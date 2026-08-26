@@ -1,0 +1,6 @@
+TARAKESWAR FRESH FISH — FINAL AUTO MACHINE 7.1
+Release: 2026-08-26
+Base: V7-FINAL-ALL-FEATURES-REPAIR-READY
+Layer: FINAL AUTO MACHINE
+Apps: Customer + Admin + Delivery
+Status: Build/QA Ready; production credentials and real-service verification required before public launch.

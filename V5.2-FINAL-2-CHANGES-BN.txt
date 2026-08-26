@@ -1,0 +1,24 @@
+TARAKESWAR FRESH FISH — V5.2 ULTIMATE FINAL 2
+
+এই build-এ UI/UX ও New Supabase Project/Delivery onboarding fixes করা হয়েছে।
+
+CUSTOMER APP
+1. পুরনো বড় bottom navigation hide করে compact 7-item bottom bar:
+   Install, Home, Category, Orders, Wallet, Help Desk, Partner Hub
+2. AI Assistant এখন শুধু একটি round floating bubble হিসেবে থাকে।
+3. Install/Update/Help/Partner সব main content-এর উপর full-screen overlay হিসেবে থাকবে না।
+4. Existing cart dock bottom navigation-এর উপরে রাখা হয়েছে।
+5. Update Available থাকলে সেটি bottom bar-এর ছোট Update item হিসেবে আসে; main screen block করে না।
+6. Help Desk ও Partner Hub সরাসরি সংশ্লিষ্ট section-এ নিয়ে যায়।
+
+DELIVERY APP
+1. New Supabase project/new Gmail-এর ক্ষেত্রে Delivery Partner profile না থাকলে পরিষ্কার onboarding message দেখাবে।
+2. Delivery dashboard existing Auth + delivery_partner_profiles linkage-এর উপরই কাজ করবে।
+
+ADMIN APP
+1. Delivery Partners tab-এ New Project checklist যোগ হয়েছে।
+2. Admin account এবং Delivery Boy account আলাদা—এটি স্পষ্টভাবে দেখানো হয়েছে।
+3. Existing Delivery Partner Management + Delivery Operations Center retained.
+
+IMPORTANT
+নতুন Gmail দিয়ে Admin login করলে Delivery App নিজে থেকে সেই account-কে Delivery Boy বানাবে না। Admin থেকে Delivery Partner account/profile তৈরি করে সেই partner credentials দিয়ে delivery.html-এ login করতে হবে।

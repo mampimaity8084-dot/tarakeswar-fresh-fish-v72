@@ -1,0 +1,37 @@
+Tarakeswar Fresh Fish V5.2 — Partner & Family Hub
+
+এই build V5.1 FINAL ZIP-এর উপর additive upgrade।
+
+নতুন:
+1. Customer App-এ Partner & Family Hub
+   - Restaurant Partner
+   - Event & Catering Partner
+   - Family Hub
+2. Admin App-এ Partner & Family tab
+   - Add / Edit / Enable / Disable / Delete
+   - Title, subtitle, description, image, button, URL, sort order
+   - Customer customization ON/OFF
+3. Customer customization
+   - section show/hide
+   - নিজের নাম
+   - personal note
+   - local device-এ preference save
+4. Supabase migration:
+   supabase/migrations/0002_v52_partner_family_hub.sql
+
+RECOMMENDED ARCHITECTURE
+- এখন আলাদা Partner App করার দরকার নেই।
+- Customer App-এর ভিতর Partner & Family Hub + Admin management সবচেয়ে সহজ।
+- ভবিষ্যতে restaurant/event partner-দের নিজের login, menu, lead/order, analytics দরকার হলে আলাদা "Partner Portal" যোগ করা যাবে।
+- Family feature customer app-এর মধ্যেই থাকবে।
+
+SETUP
+1. Supabase SQL Editor-এ 0002_v52_partner_family_hub.sql একবার run করুন।
+2. Cloudflare deploy করুন।
+3. Admin login করে Partner & Family tab খুলুন।
+4. Demo cards edit/delete করে নিজের restaurant/event/family content দিন।
+5. Customer app reload করুন।
+
+নোট:
+- Customer-এর personal customization বর্তমানে browser local storage-এ রাখা হচ্ছে, তাই একই account অন্য device-এ automatic sync হবে না।
+- চাইলে V5.3-এ customer profile-এর সাথে customization cloud-sync করা যাবে।

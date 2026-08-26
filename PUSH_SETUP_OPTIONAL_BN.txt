@@ -1,0 +1,12 @@
+PUSH NOTIFICATION - OPTIONAL SETUP
+
+This build does NOT require VAPID keys to deploy.
+Customer app, admin, delivery, orders, GPS, Razorpay and other features can be deployed/tested first.
+
+When you are ready for real server-side Web Push, add these Cloudflare environment variables:
+VAPID_PUBLIC_KEY
+VAPID_PRIVATE_KEY
+VAPID_SUBJECT
+
+Until then, the notification UI fails gracefully instead of blocking the app.
+Do NOT put VAPID_PRIVATE_KEY in frontend files.

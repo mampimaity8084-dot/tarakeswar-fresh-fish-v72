@@ -1,0 +1,31 @@
+Tarakeswar Fresh Fish V5.2 Ultimate Stable
+
+এই build V5.2 Partner & Family Hub-এর উপর additive Ultimate layer।
+
+Added:
+- Admin Setup Wizard (browser-side public configuration helper)
+- System Health / Health Center
+- Admin password recovery link
+- Floating Bubble menu for customer/delivery
+- Auto refresh helper (2 minute visibility-safe refresh)
+- Dark/Light mode
+- বাংলা/English preference switch foundation
+- Offline-friendly service worker reuse
+- Universal image compression helper (client-side)
+- Skeleton/shimmer CSS utility
+- PDF invoice via browser Print/Save as PDF
+- Backup & Restore of app-side settings
+- Global Search over loaded admin records
+- Customer Help & Support Center
+- FAQ Center
+- Policy Center
+- Support Ticket foundation
+- Notification/review foundation
+- Review/Rating foundation
+- Partner & Family Hub retained
+- Safer user-facing configuration errors
+
+Important:
+Secrets such as Razorpay secret, Supabase service role and VAPID private key MUST remain Cloudflare Environment Variables. The Setup Wizard does not expose or store secrets in browser storage.
+
+For support tickets/reviews, run supabase/migrations/0003_v52_ultimate.sql once.

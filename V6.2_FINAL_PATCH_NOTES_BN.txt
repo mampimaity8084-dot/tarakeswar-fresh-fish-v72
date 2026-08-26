@@ -1,0 +1,17 @@
+TARAKESWAR FRESH FISH — V6.2 FINAL LAUNCH PATCH
+Build: 22 August 2026
+
+FIXED
+1. Family Hub / bottom content touch area: added safe bottom space and scroll margin so fixed Cart + Bottom Navigation no longer cover Family Hub controls.
+2. Checkout layering: checkout/payment modal is above all fixed UI; cart dock, bottom nav, AI bubble and feedback float are hidden while checkout is open.
+3. Help: bottom navigation now opens the real Help & Support modal directly instead of scrolling to an old help layer.
+4. Privacy: bottom navigation now includes working Privacy Policy action. Existing privacy.html and in-app policy are retained.
+5. Customer App launcher in Admin: opens the current root Customer App with cache cleanup and version query instead of the stale cached page.
+6. PWA cache: Customer/Admin/Delivery service-worker cache names bumped to V6.2 to prevent old V6.1 assets from being served.
+7. Delivery app: visible V6.2 Delivery Operations badge added; existing GPS/order functions retained.
+
+NOT CLAIMED AS LIVE WITHOUT CONFIGURATION
+- Razorpay live/test payment requires Cloudflare environment variables and backend configuration.
+- Supabase data operations require the existing Supabase project/configuration.
+- Live GPS requires partner account, browser location permission, Supabase Realtime and routing/map configuration.
+- AI/WhatsApp require their respective environment variables/API setup.

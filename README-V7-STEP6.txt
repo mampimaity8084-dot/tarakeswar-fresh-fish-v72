@@ -1,0 +1,10 @@
+Tarakeswar Fresh Fish — V7 Step 6
+Production Hardening + Real-time AI Context + Scheduled Alerts + Final QA
+
+Read:
+1. V7-STEP6-FINAL-MASTER-TRACKER-BN.md
+2. V7-STEP6-DEPLOY-GUIDE-BN.md
+3. V7-STEP6-SECURITY-POLICY.md
+4. V7-STEP6-AI-CONTEXT-CONTRACT.md
+5. V7-STEP6-QA-CHECKLIST-BN.md
+6. V7-STEP6-SCHEDULED-ALERTS.md

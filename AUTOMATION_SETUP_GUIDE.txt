@@ -1,0 +1,63 @@
+TARAKESWAR FRESH FISH — AUTOMATION V2 SETUP
+
+এই ZIP-এ যোগ হয়েছে:
+1) Customer order Supabase-এ save + WhatsApp checkout
+2) Automatic Fresh Points: প্রতি ₹500 Delivered order = 1 point
+3) Automatic Refer & Earn milestone: 1=₹30, 3=₹100, 5=₹200, 10=₹400 total referral credit + VIP
+4) Automatic VIP: একই মাসে 4+ Delivered order
+5) Admin Orders Dashboard
+6) Delivered button চাপলে Rewards trigger + WhatsApp Feedback Edge Function invoke
+7) Flash/Secret Offer manager with start/end time
+8) Weekly day-based auto message in Customer App
+9) WhatsApp Group benefits + posters in offer slider
+10) Google Feedback Form button
+
+STEP 1 — DATABASE
+Supabase Dashboard > SQL Editor > New query > SUPABASE_AUTOMATION_V2.sql পুরোটা paste করে Run করুন।
+পুরনো public.fish data delete হবে না।
+
+STEP 2 — FEEDBACK FORM URL
+SQL Editor-এ আপনার আসল Google Form link বসিয়ে run করুন:
+update public.public_settings set feedback_form_url='YOUR_GOOGLE_FORM_LINK' where id=1;
+
+STEP 3 — WHATSAPP CLOUD API
+সম্পূর্ণ automatic outgoing feedback message-এর জন্য official WhatsApp Business Platform / Cloud API লাগবে।
+Meta Developer setup থেকে Phone Number ID এবং Access Token নিন। Feedback template ব্যবহার করলে template approved হতে হবে।
+Suggested template name: tff_feedback_request
+Suggested body (2 variables):
+নমস্কার {{1}} 🙏 Tarakeswar Fresh Fish থেকে অর্ডার করার জন্য ধন্যবাদ। আপনার মতামত দিন: {{2}}
+
+STEP 4 — DEPLOY EDGE FUNCTION
+Supabase Dashboard > Edge Functions > Create/Deploy function name: send-feedback
+এই ZIP-এর supabase/functions/send-feedback/index.ts code ব্যবহার করুন।
+
+Edge Function Secrets-এ দিন:
+WHATSAPP_PHONE_NUMBER_ID = Meta Phone Number ID
+WHATSAPP_ACCESS_TOKEN = permanent/system-user token (secret)
+WHATSAPP_GRAPH_VERSION = Meta docs-এ বর্তমানে supported Graph API version (যেমন vXX.X)
+FEEDBACK_FORM_URL = আপনার Google Form URL
+WHATSAPP_TEMPLATE_NAME = tff_feedback_request   (approved template থাকলে)
+WHATSAPP_TEMPLATE_LANG = bn   (আপনার approved template language code অনুযায়ী)
+
+IMPORTANT: WhatsApp access token / Supabase secret key কখনও index.html, admin.html বা supabase-config.js-এ দেবেন না।
+
+STEP 5 — ADMIN AUTH
+Supabase Authentication-এ শুধুমাত্র আপনার trusted admin user রাখুন। Public sign-up disable রাখা ভালো, কারণ এই build-এ authenticated user-কে admin privileges দেওয়া হয়েছে।
+
+STEP 6 — NETLIFY
+এই পুরো ZIP-টি SAME Cloudflare project-এ নতুন deploy হিসেবে upload করুন।
+তারপর test:
+A) Customer App থেকে cart > checkout > name/mobile/area > order save > WhatsApp open
+B) Admin > Orders-এ order দেখুন
+C) Delivered + Auto Feedback চাপুন
+D) Customer-এর Points / Referral / VIP update দেখুন
+E) WhatsApp feedback message গেছে কিনা দেখুন
+
+NOTE ABOUT WHATSAPP RULES
+WhatsApp-এ customer service window-এর বাইরে business-initiated message পাঠাতে approved template লাগতে পারে। তাই production-এ template mode ব্যবহার করাই safest।
+
+REFERRAL LOGIC
+Referral milestone credit TOTAL target হিসেবে ধরা হয়েছে: 1 referral = ₹30 total, 3 = ₹100 total, 5 = ₹200 total, 10 = ₹400 total। ফলে 3rd successful referral-এ previous ₹30 থেকে আরও ₹70 যোগ হয়; 5th-এ আরও ₹100; 10th-এ আরও ₹200।
+
+FRESH POINTS
+Points শুধুমাত্র order status প্রথমবার Delivered হলে add হয়। একই order আবার Delivered করে double points হবে না।

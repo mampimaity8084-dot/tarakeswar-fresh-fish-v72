@@ -1,0 +1,6 @@
+FIX: netlify/functions/lib/supabase.js now exports json() and getSecretKey().
+This fixes create-checkout.js / verify-checkout.js runtime failures that caused
+"Secure checkout তৈরি হয়নি" before the Razorpay checkout window opened.
+Required Cloudflare environment variables remain: SUPABASE_URL,
+SUPABASE_SERVICE_ROLE_KEY (or SUPABASE_SECRET_KEY), RAZORPAY_KEY_ID,
+RAZORPAY_KEY_SECRET.

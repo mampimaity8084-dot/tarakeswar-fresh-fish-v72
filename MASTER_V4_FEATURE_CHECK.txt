@@ -1,0 +1,42 @@
+MASTER V4 FEATURE CHECK
+=======================
+
+READY IN ZIP
+------------
+[OK] Customer PWA
+[OK] Admin PWA (new manifest + service worker)
+[OK] Delivery PWA
+[OK] Separate Customer/Admin/Delivery QR generation
+[OK] QR Save / Share / Copy
+[OK] Customer QR bug fixed (CorrectLevel.M + fallback)
+[OK] Admin install button
+[OK] Delivery install + Delivery QR
+[OK] AI Assistant (local product intelligence)
+[OK] Bengali voice assistant where browser supports SpeechRecognition
+[OK] Photo-based catalog visual similarity search
+[OK] Auto banner clickable target
+[OK] Banner customization panel
+[OK] Master Automation Center
+[OK] Automation toggles storage foundation
+[OK] Wallet / Fresh Points / VIP / Referral foundation retained
+[OK] Coupon / loyalty / wallet ledger DB foundation
+[OK] Customer addresses DB foundation
+[OK] Delivery zones DB foundation
+[OK] Reviews / support / campaign / abandoned-cart DB foundation
+[OK] Business dashboard RPC
+[OK] Feedback function hardened and error status persisted
+[OK] WhatsApp health endpoint
+[OK] Authenticated WhatsApp gateway endpoint
+[OK] Push optional flow retained
+[OK] Push helper call bug fixed in Admin (sendCustomerPushServer)
+[OK] Existing Razorpay / payment verification files retained
+[OK] Existing GPS / OTP / Delivery system retained
+
+INTENTIONALLY NOT ACTIVATED
+---------------------------
+[MANUAL LATER] Real WhatsApp Cloud API credentials + Meta template approval
+[MANUAL LATER] Real Web Push VAPID secrets
+
+NOT CLAIMED AS CLOUD AI
+----------------------
+Photo search is browser-side catalog image similarity. It does not require an AI API key. Semantic vision-level matching can be added later without changing the app architecture.

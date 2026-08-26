@@ -1,0 +1,38 @@
+[build]
+  publish = "."
+  functions = "netlify/functions"
+
+[build.environment]
+  # Supabase project URL is intentionally public in browser config; it is not a secret.
+  SECRETS_SCAN_OMIT_PATHS = "supabase-config.js,FINAL_DEPLOY_README.txt,FINAL_LAUNCH_1_HOUR_BN.txt"
+
+[functions]
+  node_bundler = "esbuild"
+
+[functions."auto-banner-scheduled"]
+  schedule = "0 3 * * *"
+
+[functions."expire-rewards-scheduled"]
+  schedule = "15 3 * * *"
+
+
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate, max-age=0"
+    Pragma = "no-cache"
+
+[[headers]]
+  for = "/sw.js"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate, max-age=0"
+
+[[headers]]
+  for = "/admin-sw.js"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate, max-age=0"
+
+[[headers]]
+  for = "/delivery-sw.js"
+  [headers.values]
+    Cache-Control = "no-store, no-cache, must-revalidate, max-age=0"

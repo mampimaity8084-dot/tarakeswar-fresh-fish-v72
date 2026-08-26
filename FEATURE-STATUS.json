@@ -1,0 +1,8 @@
+{
+  "build": "7.2-final-auto-machine",
+  "static_checks": {"v6_static": "passed", "v7_structure": "passed"},
+  "included_foundation": ["customer","admin","delivery","pwa","auto-update","auto-sync-hooks","floating-bengali-ai","partner-hub","profile-shortcut","categories","wallet","points","referral","vip","payment","gps","otp","push","whatsapp","auto-banner","reward-expiry"],
+  "requires_production_setup": ["supabase","razorpay","vapid_push","whatsapp_meta","ai_provider","https_gps","realtime_permissions"],
+  "not_embedded": ["real_credentials","external_accounts","store_approval","original_purchased_3d_model_asset"],
+  "important": "Static checks are not a substitute for real production integration QA."
+}

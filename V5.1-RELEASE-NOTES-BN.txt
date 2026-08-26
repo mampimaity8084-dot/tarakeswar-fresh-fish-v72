@@ -1,0 +1,24 @@
+Tarakeswar Fresh Fish V5.1
+Smart Automation & App Control
+
+এটি V4.3/V5-এর additive upgrade। পুরনো feature সরানো হয়নি।
+
+নতুন:
+1. Global Auto Refresh — 30 sec fallback + visibility refresh; existing realtime থাকলে সেটিও চলবে।
+2. Auto Update / Version Manager — app-version.json দেখে নতুন version detect করে update prompt।
+3. Universal Admin App Center — Customer/Delivery/Admin-এর Install, Copy Link, Share, Save QR.
+4. Animated logo branding.
+5. Flowing branded tagline bar.
+6. Customer profile photo upload-এ camera capture ও instant preview.
+7. Live System Status panel.
+8. Customer/Delivery/Admin তিন app-এ quick Install/Share/Copy/Refresh tools.
+
+Deploy:
+- V4.3 production untouched রাখুন।
+- এই ZIP-টি আগে Cloudflare Deploy Preview হিসেবে পরীক্ষা করুন।
+- Supabase-এ কোনো নতুন SQL এই release চালানোর প্রয়োজন নেই।
+- Existing Auto Banner/Wallet/Razorpay/GPS/OTP functions unchanged.
+
+নোট:
+- Dynamic branding text server-side admin থেকে edit করার জন্য আলাদা database persistence এই release-এ যোগ করা হয়নি; default branded taglines built-in এবং automaticভাবে flow করে।
+- Auto update নতুন version detect করে prompt দেয়; browser/PWA security-এর কারণে silent forced update করা হয় না।

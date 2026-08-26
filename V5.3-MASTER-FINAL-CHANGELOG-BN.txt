@@ -1,0 +1,36 @@
+TARAKESWAR FRESH FISH — V5.3 MASTER FINAL
+
+CUSTOMER UI
+- 3-theme animated splash preserved.
+- Transparent logo used across Customer/Admin/Delivery and service-worker notification icons.
+- Fixed header tagline removed; scrolling marquee preserved.
+- Legacy Install/Share/Copy/Refresh/Settings/Online floating layers removed from Customer.
+- One canonical bottom navigation: Home, Category, Orders, Wallet, Help Desk, Partner Hub, Update (Update appears only when available).
+- App Download QR + Share + Copy Link + Install remain in the top QR area.
+- One Help & Support section only.
+- One AI launcher only.
+
+AI
+- Existing local product recommendation remains as fallback.
+- Server-side OpenAI Responses API bridge added; OPENAI_API_KEY never reaches browser.
+- Existing generic AI_API_URL/AI_API_KEY provider remains supported.
+
+WHATSAPP
+- Existing 1:1 Cloud API retained with stricter admin auth.
+- Groups API group-message support added via recipient_type=group.
+- Auto Banner can optionally post the generated banner to WHATSAPP_GROUP_ID when configured.
+- Group automation depends on Meta Groups API eligibility and a valid Group ID.
+
+BACKUP/RESTORE
+- Backup endpoint is now admin-authenticated.
+- Full allowlisted core-data export added.
+- Real server-side restore endpoint added with admin authentication and upsert.
+- Admin UI Restore now actually sends the JSON to the backend.
+
+SECURITY
+- Admin checks added to backup and WhatsApp send endpoints.
+- Secrets remain server-side.
+
+NETLIFY + SUPABASE
+- New Cloudflare site can use the same existing Supabase project.
+- Added Bengali deployment/setup guide and environment-variable guide.

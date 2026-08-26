@@ -1,0 +1,9 @@
+TARAKESWAR FRESH FISH V6.1 FINAL LAUNCH PATCH
+
+1. Removed fixed “Fresh Today • Secure Razorpay Payment • Next-Day Delivery” top strip.
+2. Checkout modal is always above cart/bottom navigation; cart dock and nav are hidden while checkout is open.
+3. Added one functional Help & Support center with WhatsApp support flow.
+4. Added Privacy Policy modal and privacy.html; Privacy is accessible from customer bottom navigation.
+5. Kept transparent logo asset.
+6. Existing AI, payment, delivery, partner and automation functions remain; live operation requires Supabase/Cloudflare configuration.
+7. Distance-based delivery charge, live rider map/route, automated invoices and full AI workflows require backend tables/functions and external API configuration.

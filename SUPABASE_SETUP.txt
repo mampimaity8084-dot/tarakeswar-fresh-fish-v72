@@ -1,0 +1,9 @@
+Tarakeswar Fresh - Supabase Ready
+
+1. Open supabase-config.js
+2. Replace PASTE_YOUR_API_URL_HERE with your API URL.
+3. Replace PASTE_YOUR_PUBLISHABLE_KEY_HERE with your Publishable key.
+4. Never use Secret/service_role key here.
+5. Save the file and deploy the full folder/ZIP to the same Cloudflare project.
+
+This version reads live products from public.fish using your existing SELECT RLS policy.

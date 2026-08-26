@@ -1,0 +1,389 @@
+<!doctype html>
+<html lang="bn"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tarakeswar Fresh Fish</title><meta name="theme-color" content="#071b34"><link rel="manifest" href="manifest.webmanifest">
+<style>
+:root{--navy:#071b34;--green:#0c9b50;--bg:#f4f7fb;--card:#fff;--text:#162033;--muted:#6b7280;--gold:#f4b63c;--red:#d83a2e}
+*{box-sizing:border-box}body{margin:0;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif;background:var(--bg);color:var(--text)}
+header{position:sticky;top:0;z-index:20;background:white;padding:11px 14px;box-shadow:0 2px 12px #0001}.bar{max-width:1180px;margin:auto;display:flex;align-items:center;gap:11px}.logo{width:48px;height:48px;border-radius:50%;object-fit:cover}.brand{font-weight:900;color:var(--navy)}.spacer{flex:1}.wrap{max-width:1180px;margin:auto;padding:16px}.hero{background:linear-gradient(135deg,#0d2442,#087d49);color:white;border-radius:24px;padding:24px;margin-bottom:16px}.hero h1{margin:3px 0 8px;font-size:34px}.hero .sub{opacity:.92}.search{width:100%;padding:14px;border:0;border-radius:14px;margin-top:14px;font-size:16px}.panel{background:white;border-radius:20px;padding:18px;margin-bottom:16px;box-shadow:0 8px 28px #0b1f330d}.panel h2{margin:0 0 12px}.cats{display:flex;gap:9px;overflow:auto;padding:2px 0 12px}.chip{white-space:nowrap;background:white;border:1px solid #dfe5ec;border-radius:999px;padding:9px 13px;font-weight:800;cursor:pointer}.chip.active{background:var(--navy);color:white}.grid{display:grid;grid-template-columns:repeat(4,1fr);gap:14px}.card{background:white;border-radius:18px;padding:14px;box-shadow:0 7px 22px #0b1f3310}.card img{width:100%;aspect-ratio:1/1;object-fit:cover;border-radius:14px}.emoji{font-size:46px}.card h3{margin:8px 0 4px}.muted{color:var(--muted)}.price{font-size:22px;font-weight:900}.stock{font-size:13px;color:var(--green);font-weight:800}.btn{border:0;border-radius:12px;padding:10px 14px;font-weight:900;cursor:pointer}.green{background:var(--green);color:white}.navy{background:var(--navy);color:white}.light{background:#eef2f7}.gold{background:#ffdf74;color:#3f3100}.btn:disabled{opacity:.55}.bottom{position:sticky;bottom:0;z-index:18;background:white;border-top:1px solid #e5e7eb;padding:10px 14px;display:flex;justify-content:space-between;align-items:center}.bottom>div,.bottom>button{max-width:50%}
+.offer-slider{max-width:1180px;margin:14px auto 0;padding:0 16px}.slider-shell{position:relative;overflow:hidden;border-radius:22px;background:#fff;box-shadow:0 8px 28px #0b1f3314}.slides{display:flex;transition:transform .55s ease}.slide{min-width:100%}.slide img{display:block;width:100%;aspect-ratio:1200/520;object-fit:cover}.dots{position:absolute;left:0;right:0;bottom:12px;display:flex;justify-content:center;gap:7px}.dot{width:8px;height:8px;border-radius:50%;background:#ffffff88;border:1px solid #fff}.dot.active{background:#fff;transform:scale(1.25)}
+.weekly{background:linear-gradient(135deg,#071b34,#0a8a50);color:white}.weekly .tag{display:inline-block;background:#ffd84c;color:#3b2b00;font-weight:900;border-radius:999px;padding:6px 10px;margin-bottom:8px}.benefits{display:grid;grid-template-columns:repeat(3,1fr);gap:10px}.benefit{border:1px solid #e5e7eb;border-radius:16px;padding:13px;background:#fff}.benefit b{display:block;margin-bottom:5px}.benefit .num{font-size:22px}.offerbox{border:2px dashed #f0b323;background:#fffaf0}.offerItem{padding:10px 0;border-bottom:1px solid #eee}.offerItem:last-child{border:0}
+.modal{position:fixed;inset:0;background:#0009;z-index:50;display:none;align-items:center;justify-content:center;padding:15px}.modal.show{display:flex}.modalCard{width:min(520px,100%);max-height:92vh;overflow:auto;background:white;border-radius:22px;padding:18px}.field{margin:10px 0}.field label{font-weight:800;display:block;margin-bottom:5px}.field input{width:100%;padding:12px;border:1px solid #d5dbe3;border-radius:10px;font-size:16px}.summary{background:#f6f8fb;border-radius:14px;padding:12px}.refNote{background:#f0fff7;border:1px solid #c7efd8;border-radius:12px;padding:10px}.feedbackFloat{position:fixed;right:14px;bottom:calc(62px + env(safe-area-inset-bottom) + 82px);z-index:19;text-decoration:none;background:#ffd84c;color:#241a00;padding:10px 13px;border-radius:999px;font-weight:900;box-shadow:0 5px 18px #0002;display:none}
+@media(max-width:850px){.grid{grid-template-columns:repeat(2,1fr)}.benefits{grid-template-columns:repeat(2,1fr)}}@media(max-width:520px){.hero h1{font-size:28px}.benefits{grid-template-columns:1fr 1fr}.card{padding:11px}.slide img{aspect-ratio:4/3}}
+
+/* Product detail / Amazon-style commerce additions */
+.productModal .modalCard{padding:0;overflow:hidden}.pdBody{padding:18px}.pdImg{width:100%;max-height:330px;object-fit:contain;background:#fff}.pdTitle{font-size:28px;font-weight:900;margin:8px 0}.pdPrice{font-size:30px;font-weight:900;margin:8px 0}.pdStock{color:var(--green);font-weight:900;font-size:18px}.qtyRow{display:flex;align-items:center;justify-content:space-between;border:1px solid #cfd6df;border-radius:14px;padding:10px 14px;margin:14px 0}.qtyRow select{border:0;background:transparent;font-size:18px;font-weight:800}.actionStack{display:grid;gap:10px}.cartBtn{background:#ffd814;color:#111;border:1px solid #f0c400;border-radius:999px;padding:14px;font-size:17px;font-weight:800}.buyBtn{background:#ffa41c;color:#111;border:1px solid #ff8f00;border-radius:999px;padding:14px;font-size:17px;font-weight:800}.wishBtn{background:#fff;border:1px solid #9aa3ad;border-radius:999px;padding:12px;font-size:16px;font-weight:800}.trustBox{margin-top:16px;border-top:1px solid #e5e7eb;padding-top:12px}.trustGrid{display:grid;grid-template-columns:1fr 1fr;gap:8px;color:#365f84}.detailLink{background:none;border:0;padding:0;color:inherit;text-align:left;width:100%;cursor:pointer}.card{position:relative}.wishMini{position:absolute;right:20px;top:20px;border:0;background:#ffffffdd;border-radius:50%;width:38px;height:38px;font-size:20px;cursor:pointer}.miniActions{display:flex;gap:7px;margin-top:8px}.miniActions .btn{flex:1}.miniBuyBtn{background:#ffa41c;color:#111;border:1px solid #ff8f00;font-weight:900;white-space:nowrap}.miniBuyBtn:active{transform:scale(.98)}.wishCount{display:inline-block;min-width:18px;text-align:center;background:#d83a2e;color:white;border-radius:999px;padding:1px 5px;font-size:11px;margin-left:3px}.wishlistPanel{display:none}.wishlistPanel.show{display:block}
+.tagline{font-size:12px;color:#0b6b49;font-weight:800;margin-top:2px}
+.notice{background:#fff7dc;border:1px solid #f1d26a;border-radius:14px;padding:12px;margin:12px 0}
+.slotGrid,.payGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.choice{border:1px solid #d7dde5;border-radius:14px;padding:12px;cursor:pointer;background:#fff}
+.choice input{width:auto;margin-right:7px}
+.confirmBox{background:linear-gradient(135deg,#effff5,#fff8dc);border:1px solid #c9ead6;border-radius:16px;padding:14px}
+.timeline{display:grid;gap:8px;margin:12px 0}.step{padding:10px 12px;border-radius:12px;background:#eef2f7}.step.on{background:#dff7e9;color:#075c34;font-weight:900}
+.trackFloat{position:fixed;left:14px;bottom:78px;z-index:19;border:0;background:#071b34;color:#fff;padding:10px 13px;border-radius:999px;font-weight:900}
+
+
+.topStrip{background:#071b34;color:#fff;text-align:center;padding:7px 12px;font-size:12px;font-weight:750;letter-spacing:.1px}.iconBtn{border:0;background:#f1f5f9;border-radius:14px;padding:10px 12px;font-weight:900;font-size:18px}.heroBadge{display:inline-block;padding:6px 10px;border-radius:999px;background:#ffffff20;border:1px solid #ffffff45;font-size:12px;font-weight:900}.deliveryMini{margin-top:8px;font-size:13px;opacity:.9}.card{transition:transform .18s ease,box-shadow .18s ease;border:1px solid #edf1f5}.card:active{transform:scale(.985)}.qtyControl{display:grid;grid-template-columns:38px 1fr 38px;align-items:center;background:#0c9b50;color:#fff;border-radius:12px;overflow:hidden;font-weight:900;min-height:42px}.qtyControl button{height:100%;border:0;background:transparent;color:#fff;font-size:22px;font-weight:900}.qtyControl span{text-align:center}.cartDock{position:fixed;left:12px;right:12px;bottom:calc(62px + env(safe-area-inset-bottom) + 12px);z-index:900;background:#fff;border:1px solid #e6ebf0;border-radius:18px;padding:10px 12px;display:flex;align-items:center;justify-content:space-between;box-shadow:0 12px 40px #071b3430;touch-action:manipulation}.checkoutBtn{min-width:150px}.appNav{position:fixed;bottom:0;left:0;right:0;min-height:62px;height:calc(62px + env(safe-area-inset-bottom));z-index:1000;background:#fff;border-top:1px solid #e7ebef;display:flex;justify-content:space-around;padding:5px 4px max(5px,env(safe-area-inset-bottom));touch-action:manipulation}.appNav button{border:0;background:transparent;color:#5d6674;font-size:10px;font-weight:800;min-width:58px;min-height:48px;padding:4px 2px;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.appNav span{display:block;color:#071b34;font-size:20px;margin-bottom:1px}.wrap{padding-bottom:calc(190px + env(safe-area-inset-bottom))}.modalHead{display:flex;align-items:center;justify-content:space-between;gap:10px}.modalHead h2{margin:0}.secureNote{background:#eefbf4;border:1px solid #ccebd8;border-radius:14px;padding:12px;color:#165b39}.walletGrid{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.walletStat{background:#f5f8fb;border-radius:14px;padding:12px}.walletStat strong{display:block;font-size:21px}.orderMini{border:1px solid #e3e8ee;border-radius:14px;padding:12px;margin-top:9px}.statusPill{display:inline-block;background:#e7f8ef;color:#08733e;padding:4px 8px;border-radius:999px;font-size:12px;font-weight:900}.securityBadge{display:inline-flex;gap:5px;align-items:center;background:#eaf7ef;color:#08613a;border-radius:999px;padding:5px 9px;font-size:11px;font-weight:900}.otpBox{font-size:26px;letter-spacing:8px;text-align:center;background:#071b34;color:white;padding:12px;border-radius:14px;margin-top:10px}.panelTitle{display:flex;justify-content:space-between;align-items:center}.priceRow{display:flex;justify-content:space-between;align-items:end;gap:8px}.miniActions{min-height:42px}.trackFloat{display:none}.appNav button{position:relative;z-index:1001;pointer-events:auto}.appNav{pointer-events:auto}.cartDock{pointer-events:auto}@media(max-width:520px){header .bar{gap:7px}.brand{font-size:16px}.logo{width:44px;height:44px}.offer-slider{padding:0 10px}.wrap{padding:12px 10px 155px}.panel{padding:14px}.grid{gap:10px}.card h3{font-size:17px}.price{font-size:21px}.miniActions .gold{display:none}.walletGrid{grid-template-columns:1fr 1fr}.hero{padding:20px 16px}.hero h1{font-size:29px}}
+
+.comboHub{margin:16px 0 22px;background:linear-gradient(135deg,#071b34,#0b7e49);color:#fff;border-radius:22px;padding:18px;box-shadow:0 12px 30px #0002}
+.comboHubHead{display:flex;align-items:center;gap:10px;justify-content:space-between}.comboHub h2{margin:0}.comboHub p{margin:6px 0 12px;color:#dceee5}.comboScroll{display:flex;gap:12px;overflow-x:auto;padding:4px 2px 10px;scroll-snap-type:x mandatory}.comboTile{min-width:205px;scroll-snap-align:start;background:#fff;color:#172033;border-radius:18px;padding:14px;box-shadow:0 8px 18px #0002;cursor:pointer}.comboTile .emoji{font-size:40px}.comboTile b{display:block;margin:5px 0}.comboTile small{color:#6b7280}.comboTile strong{font-size:20px}.comboCTA{background:#fff;color:#071b34;border:0;border-radius:12px;padding:9px 12px;font-weight:900;white-space:nowrap}
+.clickableOffer{cursor:pointer}.offer-slider .slide{cursor:pointer}
+
+.modalLayerOpen .cartDock,.modalLayerOpen .appNav,.modalLayerOpen .tff-ai-fab,.modalLayerOpen .feedbackFloat,.modalLayerOpen .trackFloat{display:none!important}
+.modalCard{max-height:calc(100dvh - 24px);overflow:auto}
+@media(max-width:520px){.cartDock{left:8px;right:8px;bottom:calc(62px + env(safe-area-inset-bottom) + 10px);padding:9px 10px}.checkoutBtn{min-width:132px}.appNav button{min-width:48px;font-size:9px}}
+</style>
+<style id="v623-launch-touch-fix">
+/* V6.2.3 FINAL LAUNCH: never let floating layers steal the bottom-nav touch area. */
+.appNav{pointer-events:auto!important;z-index:1000!important}
+.appNav button{pointer-events:auto!important;position:relative;z-index:1001!important}
+.cartDock{z-index:900!important}
+.feedbackFloat,.trackFloat{pointer-events:none!important}
+.tff-ai-fab{pointer-events:none!important}
+</style>
+<script>
+(function(){
+  const KEY='tff-v623-stale-clean';
+  try{
+    if(!sessionStorage.getItem(KEY)){
+      sessionStorage.setItem(KEY,'1');
+      Promise.all([
+        navigator.serviceWorker?.getRegistrations?.().then(rs=>Promise.all(rs.map(r=>r.unregister()))),
+        caches?.keys?.().then(ks=>Promise.all(ks.map(k=>caches.delete(k))))
+      ]).catch(()=>{}).finally(()=>location.reload());
+      return;
+    }
+  }catch(e){}
+  window.addEventListener('DOMContentLoaded',()=>{
+    const x=document.getElementById('tffSplash');
+    if(x){setTimeout(()=>x.classList.add('hide'),1800);setTimeout(()=>x.remove(),2600);}
+  });
+})();
+</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script><script src="supabase-config.js"></script><script src="native-config.js" onerror="this.remove()"></script>
+
+<style>
+/* V6.1 Final Launch UI patch */
+.checkoutOpen .cartDock,.checkoutOpen .appNav,.checkoutOpen .tff-ai-fab,.checkoutOpen .feedbackFloat{display:none!important}.modal{z-index:20000!important}.modalCard{position:relative;z-index:20001}.tff52-pf{scroll-margin-bottom:190px!important;padding-bottom:150px!important}.cartDock{z-index:31}.appNav{z-index:30}.supportGrid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+</style>
+
+<style id="v624-final-customer-touch">
+/* FINAL LAUNCH: all seven customer nav actions remain visible and tappable */
+.appNav{z-index:10000!important;pointer-events:auto!important;display:flex!important;justify-content:space-between!important;overflow:hidden!important}
+.appNav button{flex:1 1 0!important;width:14.285%!important;min-width:0!important;max-width:none!important;min-height:50px!important;padding:3px 1px!important;pointer-events:auto!important;position:relative!important;z-index:10001!important;font-size:9px!important;touch-action:manipulation!important}
+.appNav span{font-size:18px!important}
+.cartDock{z-index:9990!important;bottom:calc(62px + env(safe-area-inset-bottom) + 8px)!important}
+.wrap{padding-bottom:calc(185px + env(safe-area-inset-bottom))!important}
+.feedbackFloat,.trackFloat,.tff-ai-fab{pointer-events:none!important}
+</style>
+</head><body>
+
+<section class="panel" id="appQrPanel" style="margin:12px 10px;background:linear-gradient(135deg,#071b34,#0b7e49);color:#fff;border:0">
+<div class="panelTitle"><div><h2 style="margin:0">📲 App Download QR</h2><small>অন্য ফোন থেকে scan করে সরাসরি Tarakeswar Fresh Fish app খুলুন</small></div><button class="comboCTA" onclick="openQr()">Show QR</button></div>
+<div id="qrBox" style="display:none;margin-top:12px;text-align:center;background:#fff;color:#172033;border-radius:18px;padding:14px">
+<div id="qrCanvas" style="display:flex;justify-content:center"></div>
+<b id="qrUrl" style="display:block;margin-top:8px;word-break:break-all;font-size:11px"></b>
+<div class="actions" style="justify-content:center"><button class="btn dark" onclick="shareApp()">📤 Share App</button><button class="btn light" onclick="copyAppUrl()">🔗 Copy Link</button><button class="btn light" onclick="installApp()">📱 Install App</button></div>
+<small>QR scan করলে এই live website খুলবে। ফোনে browser-এর “Add to Home screen / Install app” দিয়ে app হিসেবে install করা যাবে।</small>
+</div></section><div id="tffSplash" class="tff-splash" aria-label="Tarakeswar Fresh Fish loading">
+  <div class="tff-splash-orbit tff-orbit-a"></div><div class="tff-splash-orbit tff-orbit-b"></div>
+  <div class="tff-splash-card">
+    <div class="tff-splash-logo-wrap"><img src="/logo-transparent.png" class="tff-splash-logo" alt="Tarakeswar Fresh Fish"></div>
+    <div class="tff-splash-brand">Tarakeswar Fresh Fish</div>
+    <div class="tff-splash-tagline" id="tffSplashTagline">আপনার সাথে… আপনার পাতে…!</div>
+    <div class="tff-splash-items" id="tffSplashItems">
+      <span>🐟 Fish</span><span>🍗 Chicken</span><span>🥩 Mutton</span><span>🥐 Bakery</span><span>🥛 Milk</span><span>🥚 Egg</span><span>🥬 Vegetables</span>
+    </div>
+    <div class="tff-splash-festival" id="tffSplashFestival">✨ Festival Special • Fresh & Trusted</div>
+  </div>
+</div>
+<style>
+.tff-splash{position:fixed;inset:0;z-index:999999;display:flex;align-items:center;justify-content:center;overflow:hidden;background:linear-gradient(135deg,#062b2a,#0c5c48);transition:opacity .65s ease,visibility .65s ease;font-family:inherit}
+.tff-splash.hide{opacity:0;visibility:hidden;pointer-events:none}.tff-splash-card{position:relative;z-index:3;text-align:center;width:min(92vw,430px);padding:28px 18px 24px;animation:tffCardIn 1s cubic-bezier(.2,.8,.2,1) both}.tff-splash-logo-wrap{width:128px;height:128px;margin:0 auto 14px;border-radius:50%;padding:6px;background:rgba(255,255,255,.18);box-shadow:0 0 0 1px rgba(255,255,255,.3),0 18px 55px rgba(0,0,0,.28);animation:tffLogoFloat 2.8s ease-in-out infinite}.tff-splash-logo{width:100%;height:100%;object-fit:cover;border-radius:50%;display:block}.tff-splash-brand{font-size:27px;font-weight:900;color:#fff;letter-spacing:-.5px;text-shadow:0 3px 18px rgba(0,0,0,.25)}.tff-splash-tagline{margin-top:6px;color:#f7fff8;font-size:16px;font-weight:700;animation:tffTagFloat 2.4s ease-in-out infinite}.tff-splash-items{display:flex;flex-wrap:wrap;gap:8px;justify-content:center;margin:20px auto 12px;max-width:410px}.tff-splash-items span{font-size:12px;font-weight:800;color:#08352c;background:rgba(255,255,255,.92);border-radius:999px;padding:7px 10px;box-shadow:0 7px 18px rgba(0,0,0,.13);animation:tffChipFloat 2.8s ease-in-out infinite}.tff-splash-items span:nth-child(2){animation-delay:.15s}.tff-splash-items span:nth-child(3){animation-delay:.3s}.tff-splash-items span:nth-child(4){animation-delay:.45s}.tff-splash-items span:nth-child(5){animation-delay:.6s}.tff-splash-items span:nth-child(6){animation-delay:.75s}.tff-splash-items span:nth-child(7){animation-delay:.9s}.tff-splash-festival{display:inline-block;margin-top:5px;padding:9px 14px;border-radius:14px;background:rgba(255,255,255,.14);border:1px solid rgba(255,255,255,.24);color:#fff;font-size:12px;font-weight:800;animation:tffFestival 2.2s ease-in-out infinite}.tff-splash.tff-theme-1{background:radial-gradient(circle at 20% 20%,#28a46a 0,#075b47 42%,#032c2b 100%)}.tff-splash.tff-theme-2{background:radial-gradient(circle at 80% 15%,#ffb34e 0,#e76b2e 38%,#6b1746 100%)}.tff-splash.tff-theme-3{background:radial-gradient(circle at 50% 10%,#4d7cff 0,#3b2a8d 42%,#12133f 100%)}.tff-theme-2 .tff-splash-items span{color:#5b2112}.tff-theme-3 .tff-splash-items span{color:#17184e}.tff-splash-orbit{position:absolute;border:1px solid rgba(255,255,255,.18);border-radius:50%;filter:blur(.1px)}.tff-orbit-a{width:420px;height:420px;animation:tffOrbit 12s linear infinite}.tff-orbit-b{width:650px;height:650px;animation:tffOrbitReverse 18s linear infinite}.tff-splash.tff-theme-2 .tff-orbit-a{border-style:dashed}.tff-splash.tff-theme-3 .tff-orbit-b{border-width:2px}@keyframes tffCardIn{from{opacity:0;transform:translateY(28px) scale(.94)}to{opacity:1;transform:none}}@keyframes tffLogoFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-12px) rotate(2deg)}}@keyframes tffTagFloat{0%,100%{transform:translateY(0);opacity:.82}50%{transform:translateY(-5px);opacity:1}}@keyframes tffChipFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-6px)}}@keyframes tffFestival{0%,100%{transform:scale(1);opacity:.75}50%{transform:scale(1.04);opacity:1}}@keyframes tffOrbit{to{transform:rotate(360deg)}}@keyframes tffOrbitReverse{to{transform:rotate(-360deg)}}@media (prefers-reduced-motion:reduce){.tff-splash *{animation:none!important}}
+</style>
+<script>
+(function(){
+ const splash=document.getElementById('tffSplash'); if(!splash)return;
+ const themes=[
+  {c:'tff-theme-1',tag:'আপনার সাথে… আপনার পাতে…!',festival:'🐟 Fresh Everyday • Fish • Chicken • Mutton'},
+  {c:'tff-theme-2',tag:'তাজা পণ্য, ভালোবাসার বাজার',festival:'🎉 Festival Special • আপনার পছন্দ, আমাদের যত্ন'},
+  {c:'tff-theme-3',tag:'Freshness You Can Trust',festival:'✨ Family • Bakery • Milk • Egg • Vegetables'}
+ ];
+ const t=themes[Math.floor(Math.random()*themes.length)]; splash.classList.add(t.c);
+ document.getElementById('tffSplashTagline').textContent=t.tag; document.getElementById('tffSplashFestival').textContent=t.festival;
+ window.addEventListener('load',function(){setTimeout(function(){splash.classList.add('hide');setTimeout(()=>splash.remove(),700)},3000)});
+ setTimeout(()=>splash.classList.add('hide'),4500);
+})();
+</script>
+<header><div class="bar"><img src="logo-transparent.png" class="logo"><div class="brand">Tarakeswar Fresh Fish</div><div class="spacer"></div><button class="iconBtn" onclick="enableNotifications()" aria-label="Notifications">🔔</button><button class="iconBtn" onclick="toggleWishlist()" aria-label="Wishlist">♡ <span id="wishCount" class="wishCount">0</span></button><button class="iconBtn" onclick="openHub()" aria-label="Account">👤</button></div></header>
+
+<section class="offer-slider" aria-label="Offers"><div class="slider-shell"><div class="slides" id="offerSlides">
+<div class="slide"><img src="banners/member-benefits.png" alt="Member benefits"></div><div class="slide"><img src="banners/weekly-stock.png" alt="Weekly stock"></div>
+<div class="slide"><img src="banners/offer1.jpg" alt="Offer 1"></div><div class="slide"><img src="banners/offer2.jpg" alt="Offer 2"></div><div class="slide"><img src="banners/offer3.jpg" alt="Offer 3"></div>
+</div><div class="dots" id="offerDots"></div></div></section>
+
+<div class="wrap">
+<section class="panel weekly"><span class="tag" id="dayTag">THIS WEEK</span><h2 id="weeklyTitle">আজকের Member Special</h2><div id="weeklyText">Loading...</div></section>
+<section class="panel offerbox" id="offers"><h2>⚡ Active Group-Only Offers</h2><div id="activeOffers" class="muted">Active offer load হচ্ছে...</div></section>
+<section class="panel"><h2>👑 WhatsApp Group Member Benefits</h2><div class="benefits">
+<div class="benefit"><span class="num">🔥</span><b>Weekly Member Deal</b><small>Secret Combo / Member-only price</small></div>
+<div class="benefit"><span class="num">💰</span><b>Refer & Earn</b><small>1→₹30, 3→₹100, 5→₹200, 10→₹400 + VIP</small></div>
+<div class="benefit"><span class="num">⭐</span><b>Fresh Points</b><small>প্রতি ₹500 delivered order = 1 Point</small></div>
+<div class="benefit"><span class="num">🏆</span><b>Lucky Member</b><small>Friday / Sunday surprise reward</small></div>
+<div class="benefit"><span class="num">⚡</span><b>Flash Deal</b><small>Limited-time group offer</small></div>
+<div class="benefit"><span class="num">👑</span><b>VIP Club</b><small>মাসে 4+ delivered order = VIP</small></div>
+</div></section>
+
+<section class="panel wishlistPanel" id="wishlistPanel"><div style="display:flex;align-items:center"><h2 style="margin:0">♡ My Wishlist</h2><div class="spacer"></div><button class="btn light" onclick="toggleWishlist()">Close</button></div><div class="grid" id="wishlistGrid" style="margin-top:12px"></div></section>
+<section class="comboHub" id="comboHub">
+  <div class="comboHubHead"><div><h2>🔥 Combo & Offer Zone</h2><p>Tap করলে সরাসরি Combo category-তে চলে যান</p></div><button class="comboCTA" onclick="openComboCategory()">View All →</button></div>
+  <div class="comboScroll" id="comboScroll"></div>
+</section><div id="autoBannerBox" class="autoBanner" style="display:none"></div><div class="hero"><div class="heroBadge">⚡ TARAKESWAR'S FRESH MARKET</div><h1>Fresh. Fast. Trusted.</h1><div>Fish • Seafood • Chicken • Eggs • Milk • Bakery</div><div class="deliveryMini">📍 Tarakeswar & nearby • 🔪 Cutting available • 🛡️ Verified payment</div><input id="search" class="search" placeholder="🔎 মাছ, চিকেন, সীফুড খুঁজুন..."></div>
+<div class="cats" id="cats"></div><div class="grid" id="grid"><div class="card">Products load হচ্ছে...</div></div>
+</div>
+<a id="feedbackBtn" class="feedbackFloat" target="_blank">⭐ Feedback দিন</a>
+<div class="cartDock"><div><b id="cartCount">0 items</b><div class="muted" id="cartTotal">₹0</div></div><button class="btn green checkoutBtn" onclick="openCheckout()">Checkout →</button></div>
+<nav class="appNav"><button onclick="scrollTo({top:0,behavior:'smooth'})"><span>⌂</span>Home</button><button onclick="document.getElementById('cats').scrollIntoView({behavior:'smooth'})"><span>▦</span>Categories</button><button onclick="openTracker()"><span>📦</span>Orders</button><button onclick="openHub()"><span>💳</span>Wallet</button><button onclick="openSupport()"><span>🆘</span>Help</button><button onclick="openPrivacy()"><span>🔒</span>Privacy</button><button id="installBtn" onclick="installApp()" style="display:none"><span>⬇</span>Install</button></nav>
+
+<div class="modal productModal" id="productModal"><div class="modalCard"><div style="display:flex;align-items:center;padding:12px 14px;border-bottom:1px solid #eee"><b>Product Details</b><div class="spacer"></div><button class="btn light" onclick="closeProduct()">✕</button></div><div id="productDetail"></div></div></div>
+
+<div class="modal" id="hubModal"><div class="modalCard"><div class="modalHead"><div><h2>👤 My Fresh Hub</h2><div class="muted">Wallet • Rewards • Membership • Reorder</div></div><button class="btn light" onclick="closeHub()">✕</button></div><div class="field"><label>আপনার মোবাইল নম্বর</label><input id="hubMobile" inputmode="numeric" placeholder="10 digit mobile"></div><button class="btn navy" style="width:100%" onclick="loadHub()">My Account দেখুন</button><div id="hubResult" style="margin-top:12px"><div class="secureNote">🔒 Verified order-এর পর Wallet recharge/spend এবং profile photo ব্যবহার করা যাবে।</div></div></div></div>
+
+<div class="modal" id="supportModal"><div class="modalCard"><div class="modalHead"><div><h2>🆘 Help & Support</h2><div class="muted">এক জায়গা থেকে order, payment, delivery ও app support</div></div><button class="btn light" onclick="closeSupport()">✕</button></div><div class="grid" style="grid-template-columns:1fr 1fr;margin-top:12px"><button class="btn light" onclick="supportWhatsApp('Order Support')">📦 Order Support</button><button class="btn light" onclick="supportWhatsApp('Payment Problem')">💳 Payment Problem</button><button class="btn light" onclick="supportWhatsApp('Delivery Problem')">🛵 Delivery Problem</button><button class="btn light" onclick="supportWhatsApp('Product Problem')">🐟 Product Problem</button><button class="btn light" onclick="supportWhatsApp('Refund')">💰 Refund</button><button class="btn light" onclick="supportWhatsApp('App Problem')">📱 App Problem</button></div><div class="field"><label>আপনার সমস্যা</label><textarea id="supportText" rows="4" style="width:100%;padding:12px;border:1px solid #d5dbe3;border-radius:10px" placeholder="সমস্যাটি লিখুন..."></textarea></div><button class="btn green" style="width:100%" onclick="sendSupport()">💬 Support-এ পাঠান</button><div id="supportMsg" class="muted" style="margin-top:8px"></div></div></div>
+<div class="modal" id="privacyModal"><div class="modalCard"><div class="modalHead"><div><h2>🔒 Privacy Policy</h2><div class="muted">Tarakeswar Fresh Fish</div></div><button class="btn light" onclick="closePrivacy()">✕</button></div><div style="line-height:1.65;margin-top:10px"><p><b>1. আমরা কী তথ্য নিই:</b> নাম, মোবাইল নম্বর, delivery address/area, order details এবং প্রয়োজনীয় payment reference।</p><p><b>2. কেন নিই:</b> order fulfilment, delivery, payment verification, customer support এবং account/reward সুবিধার জন্য।</p><p><b>3. Payment:</b> card/UPI/payment credentials আমরা নিজেরা store করি না; configured payment provider-এর মাধ্যমে payment process হয়।</p><p><b>4. Location:</b> Delivery tracking চালু করলে rider/customer location শুধুমাত্র delivery-related purpose-এ ব্যবহার হবে এবং delivery শেষ হলে live tracking বন্ধ করা হবে।</p><p><b>5. Sharing:</b> order fulfilment-এর প্রয়োজন ছাড়া ব্যক্তিগত তথ্য বিক্রি করা হবে না। প্রয়োজনীয় service providers যেমন payment, hosting, messaging বা maps-এর সঙ্গে প্রয়োজনীয় data সীমিতভাবে ব্যবহার হতে পারে।</p><p><b>6. Security:</b> sensitive server keys browser-এ রাখা উচিত নয়; production configuration-এ Cloudflare environment variables ব্যবহার করতে হবে।</p><p><b>7. আপনার অধিকার:</b> profile/data correction বা deletion request-এর জন্য Support-এ যোগাযোগ করতে পারেন।</p><p><b>8. Updates:</b> এই policy প্রয়োজন অনুযায়ী update হতে পারে।</p><p class="muted">Last updated: 22 August 2026</p></div></div></div>
+<div class="modal" id="checkoutModal"><div class="modalCard"><div style="display:flex;align-items:center"><h2 style="margin:0">🛒 Order Details</h2><div class="spacer"></div><button class="btn light" onclick="closeCheckout()">✕</button></div>
+<div class="summary" id="orderSummary"></div>
+<div class="field"><label>আপনার নাম *</label><input id="custName" placeholder="নাম লিখুন"></div>
+<div class="field"><label>মোবাইল নম্বর *</label><input id="custMobile" inputmode="numeric" placeholder="10 digit mobile"></div>
+<div class="field"><label>এলাকা *</label><input id="custArea" placeholder="Tarakeswar / আপনার এলাকা"></div>
+<div class="field"><label>Referral Code (থাকলে)</label><input id="refCode" placeholder="যিনি invite করেছেন তাঁর code"></div>
+<div id="deliveryPromise" class="muted" style="margin:8px 0"></div>
+<div class="field"><label>ডেলিভারি সময় বেছে নিন *</label><div class="slotGrid">
+<label class="choice"><input type="radio" name="slot" value="Morning • 7 AM–11 AM" checked>🌅 Morning<br><small>7 AM–11 AM</small></label>
+<label class="choice"><input type="radio" name="slot" value="Evening • 4 PM–8 PM">🌆 Evening<br><small>4 PM–8 PM</small></label>
+</div></div>
+<div class="field"><label>Payment Method *</label><div class="payGrid">
+<label class="choice"><input type="radio" name="payment" value="COD_ADVANCE" checked onchange="refreshPaymentPreview()">💵 COD<br><small id="codLabel">Advance দিয়ে বাকিটা Delivery-তে</small></label>
+<label class="choice"><input type="radio" name="payment" value="ONLINE_FULL" onchange="refreshPaymentPreview()">📲 Full Online<br><small id="onlineLabel">Online payment-এ discount</small></label><label class="choice"><input type="radio" name="payment" value="WALLET" onchange="refreshPaymentPreview()">💳 Fresh Wallet<br><small id="walletLabel">Wallet-এ 2% discount</small></label>
+</div></div>
+<div class="summary" id="paymentPreview"></div>
+<div class="field"><label>Order Note (ঐচ্ছিক)</label><input id="custNote" placeholder="Cutting / delivery instruction"></div>
+<div class="refNote">💰 Successful referral reward প্রথম delivered order-এর পর automatically হিসাব হবে। ⭐ প্রতি ₹500 delivered order-এ 1 Fresh Point।</div>
+<button id="confirmCheckout" class="btn green" style="width:100%;margin-top:12px" onclick="submitOrder()">💳 Pay & Confirm Order</button><div id="checkoutMsg" class="muted" style="margin-top:8px"></div>
+</div></div>
+
+<div class="modal" id="confirmModal"><div class="modalCard"><h2>🎉 Order Confirmed</h2><div id="confirmDetails" class="confirmBox"></div><div class="actionStack" style="margin-top:12px"><button class="btn green" id="waConfirmBtn">WhatsApp-এ Order Copy পাঠান</button><button class="btn navy" onclick="openTrackerFromLast()">📦 Track this Order</button><button class="btn light" onclick="document.getElementById('confirmModal').classList.remove('show')">Close</button></div></div></div>
+
+<div class="modal" id="trackModal"><div class="modalCard"><div style="display:flex;align-items:center"><h2 style="margin:0">📦 Track Order</h2><div class="spacer"></div><button class="btn light" onclick="closeTracker()">✕</button></div>
+<div class="field"><label>Order ID</label><input id="trackOrderNo" placeholder="TFF-..."></div><div class="field"><label>Mobile</label><input id="trackMobile" inputmode="numeric" placeholder="10 digit mobile"></div>
+<button class="btn navy" style="width:100%" onclick="trackOrder()">Live Status দেখুন</button><div id="trackResult" style="margin-top:12px"></div></div></div>
+
+<script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+<script>
+const cfg=window.TFF_SUPABASE||{}; const sb=supabase.createClient(cfg.url,cfg.publishableKey);
+let products=[], cart=[], active='All', selectedProduct=null; let productsLoading=false; let productsLoadError='';
+Object.defineProperty(window,'tffProducts',{get:()=>products});Object.defineProperty(window,'tffCart',{get:()=>cart});window.tffUpdateCart=()=>updateCart();window.tffRender=()=>render();window.tffSaveDraftSoon=()=>saveDraftSoon(); let settings={cod_advance_percent:20,online_discount_percent:2,wallet_discount_percent:2,min_order:499,upi_id:'',delivery_note:'আজ রাত ১১:৫৯-এর মধ্যে অর্ডার করলে আগামীকাল ডেলিভারি'}; let wishlist=JSON.parse(localStorage.getItem('tff_wishlist')||'[]'); const cats=['All','Fish','Seafood','Meat','Eggs','Milk','Bakery','Combo'];
+const fallbackEmoji={Fish:'🐟',Seafood:'🦐',Meat:'🍗',Eggs:'🥚',Milk:'🥛',Bakery:'🍞',Combo:'🔥','Fresh Fish':'🐟'};
+const guestId=localStorage.getItem('tff_guest_id')||('G'+Date.now()+Math.random().toString(36).slice(2,8));localStorage.setItem('tff_guest_id',guestId);
+let cartTimer=null,trackTimer=null;
+function esc(s){return String(s??'').replace(/[&<>\"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','\"':'&quot;',"'":'&#39;'}[c]))}
+
+function openSupport(){document.getElementById('supportModal').classList.add('show')}
+function closeSupport(){document.getElementById('supportModal').classList.remove('show')}
+function openPrivacy(){document.getElementById('privacyModal').classList.add('show')}
+function closePrivacy(){document.getElementById('privacyModal').classList.remove('show')}
+function supportWhatsApp(topic){const t=document.getElementById('supportText');if(t)t.value=(t.value? t.value+'\n':'')+'Topic: '+topic; if(t)t.focus()}
+function sendSupport(){const text=(document.getElementById('supportText')?.value||'').trim();if(!text)return alert('সমস্যাটি লিখুন');const mobile=localStorage.getItem('tff_profile')?JSON.parse(localStorage.getItem('tff_profile')).mobile||'':'';const msg=encodeURIComponent('Tarakeswar Fresh Fish Support\n'+text+'\nMobile: '+mobile);window.open('https://wa.me/918100227692?text='+msg,'_blank');document.getElementById('supportMsg').textContent='WhatsApp support chat খুলছে…'}
+function setCheckoutLayer(open){document.body.classList.toggle('checkoutOpen',!!open)}
+const _openCheckout=openCheckout; openCheckout=function(){_openCheckout();setCheckoutLayer(true)}; const _closeCheckout=closeCheckout; closeCheckout=function(){_closeCheckout();setCheckoutLayer(false)};
+
+(function(){
+  const sync=()=>{
+    const open=[...document.querySelectorAll('.modal')].some(m=>m.classList.contains('show'));
+    document.body.classList.toggle('modalLayerOpen',open);
+  };
+  document.querySelectorAll('.modal').forEach(m=>new MutationObserver(sync).observe(m,{attributes:true,attributeFilter:['class']}));
+  sync();
+})();\nasync function boot(){renderCats();setWeekly();loadOffers();loadAutoBanner();loadSettings();updateWishCount();renderComboHub();await loadProducts();sb.channel('tff-live').on('postgres_changes',{event:'*',schema:'public',table:'fish'},loadProducts).on('postgres_changes',{event:'*',schema:'public',table:'offers'},loadOffers).subscribe()}
+async function loadProducts(){
+  productsLoading=true; productsLoadError=''; render();
+  const fallback=async()=>{
+    try{
+      const r=await fetch('products.json',{cache:'no-store'});
+      if(!r.ok) throw new Error('Fallback product file unavailable');
+      const local=await r.json();
+      if(Array.isArray(local)&&local.length){
+        products=local.filter(x=>x.available!==false).map(p=>({...p,emoji:p.emoji||fallbackEmoji[p.category]||'🛒'}));
+        return true;
+      }
+    }catch(e){ console.warn('Product fallback failed',e); }
+    return false;
+  };
+
+  // Show the local product catalog immediately so the customer app never sits
+  // on a blank/loading screen while Supabase is connecting.
+  const localReady=await fallback();
+  productsLoading=false;
+  render(); renderWishlist(); renderComboHub();
+
+  // Supabase remains the source of truth and refreshes the local view when available.
+  try{
+    const result=await Promise.race([
+      sb.from('fish').select('id,name,category,price,unit,available,image_url,description,created_at,stock_qty').order('id',{ascending:false}),
+      new Promise((_,reject)=>setTimeout(()=>reject(new Error('Product database timeout')),5000))
+    ]);
+    const {data,error}=result||{};
+    if(!error&&Array.isArray(data)&&data.length){
+      products=data.filter(x=>x.available!==false).map(p=>({...p,emoji:p.emoji||fallbackEmoji[p.category]||'🛒'}));
+      try{
+        const r2=await fetch('products.json',{cache:'no-store'});
+        const local2=await r2.json();
+        const samples=(Array.isArray(local2)?local2:[]).filter(x=>x.is_sample_combo&&!products.some(p=>String(p.id)===String(x.id)));
+        products=[...products,...samples];
+      }catch(e){}
+      productsLoadError='';
+    }else if(!localReady){
+      products=[]; productsLoadError=error?.message||'Product data পাওয়া যাচ্ছে না।';
+    }
+  }catch(e){
+    if(!localReady){ products=[]; productsLoadError=e?.message||'Product loading failed'; }
+  }finally{
+    productsLoading=false; render(); renderWishlist(); renderComboHub();
+  }
+}
+
+function goComboSection(){openComboCategory();document.getElementById('comboHub')?.scrollIntoView({behavior:'smooth',block:'start'});}
+function openComboCategory(){active='Combo';renderCats();render();document.getElementById('comboHub')?.scrollIntoView({behavior:'smooth',block:'start'});}
+let comboAutoTimer=null;function renderComboHub(){
+ const box=document.getElementById('comboScroll'); if(!box)return;
+ const arr=products.filter(p=>String(p.category)==='Combo').slice(0,10);
+ box.innerHTML=arr.map(p=>`<div class="comboTile" onclick="openComboCategory()"><div class="emoji">${p.emoji||'🔥'}</div><b>${esc(p.name)}</b><small>${esc(p.description||'Special combo')}</small><br><strong>₹${Number(p.price||0).toFixed(0)}</strong></div>`).join('');clearInterval(comboAutoTimer);if(arr.length>1){comboAutoTimer=setInterval(()=>{if(document.hidden)return;const max=box.scrollWidth-box.clientWidth;if(max<=0)return;const next=box.scrollLeft+220>=max?0:box.scrollLeft+220;box.scrollTo({left:next,behavior:'smooth'})},3200)}}
+function renderCats(){document.getElementById('cats').innerHTML=cats.map(c=>`<button class="chip ${c===active?'active':''}" onclick="filterCat('${c}')">${c}</button>`).join('')}
+function filterCat(c){active=c;renderCats();render()} document.getElementById('search').oninput=render;
+function normCat(c){if((c||'').toLowerCase().includes('fish'))return 'Fish';return c||'All'}
+function qtyOf(id){return cart.filter(x=>String(x.id)===String(id)).length}
+function render(){let q=(document.getElementById('search').value||'').toLowerCase();let arr=products.filter(p=>(active==='All'||normCat(p.category)===active)&&String(p.name||'').toLowerCase().includes(q));
+ if(productsLoading){document.getElementById('grid').innerHTML='<div class="card" style="grid-column:1/-1;text-align:center;padding:28px"><div style="font-size:32px">🐟</div><h3>Fresh products loading…</h3><div class="muted">একটু অপেক্ষা করুন</div></div>';return;}
+ if(!products.length){document.getElementById('grid').innerHTML='<div class="card" style="grid-column:1/-1;text-align:center;padding:28px"><h3>🐟 এখন product load হচ্ছে না</h3><div class="muted">Internet/Supabase connection check করুন।</div><button class="btn green" style="margin-top:12px" onclick="loadProducts()">↻ Retry</button></div>';return;}
+ document.getElementById('grid').innerHTML=arr.length?arr.map(p=>{const q=qtyOf(p.id);return `<div class="card"><button class="wishMini" onclick="event.stopPropagation();toggleWish('${String(p.id).replace(/'/g,"\\'")}')">${isWished(p.id)?'♥':'♡'}</button><button class="detailLink" onclick="openProduct('${String(p.id).replace(/'/g,"\\'")}')">${p.image_url?`<img loading="lazy" src="${esc(p.image_url)}" alt="${esc(p.name)}" onerror="this.style.display='none';this.nextElementSibling?.classList.remove('hidden')">`:`<div class="emoji">${p.emoji||fallbackEmoji[p.category]||'🛒'}</div>`}<h3>${esc(p.name)}</h3><div class="muted">${esc(p.unit||'')}</div>${p.description?`<div class="muted">${esc(p.description)}</div>`:''}<div class="priceRow"><div><div class="stock">${p.stock_qty!=null&&Number(p.stock_qty)<=5?'🔥 Only '+Number(p.stock_qty)+' left':'✓ Fresh Available'}</div><div class="price">₹${Number(p.price||0).toFixed(0)}</div></div><span class="securityBadge">✓ Quality</span></div></button><div class="miniActions">${q?`<div class="qtyControl"><button onclick="changeQty('${String(p.id).replace(/'/g,"\\'")}',-1)">−</button><span>${q}</span><button onclick="changeQty('${String(p.id).replace(/'/g,"\\'")}',1)">+</button></div>`:`<button class="btn green" style="flex:1" onclick="add('${String(p.id).replace(/'/g,"\\'")}')">ADD</button>`}<button class="btn miniBuyBtn" onclick="buyNow('${String(p.id).replace(/'/g,"\\'")}')">BUY NOW</button></div></div>`}).join(''):'<div class="card">এই category-তে এখন product নেই।</div>'}
+function changeQty(id,delta){let p=products.find(x=>String(x.id)===String(id));if(!p)return;let q=qtyOf(id)+delta;q=Math.max(0,Math.min(20,q));cart=cart.filter(x=>String(x.id)!==String(id));for(let i=0;i<q;i++)cart.push(p);updateCart();render();saveDraftSoon()}
+function add(id,qty=1){let p=products.find(x=>String(x.id)===String(id));if(!p)return;for(let i=0;i<qty;i++)cart.push(p);updateCart();render();saveDraftSoon()}
+function cartItems(){let m={};cart.forEach(x=>{let k=String(x.id);if(!m[k])m[k]={product_id:k,name:x.name,qty:0,unit:x.unit||'',unit_price:Number(x.price||0),line_total:0,prep:x.prep||''};m[k].qty++;m[k].line_total+=Number(x.price||0)});return Object.values(m)}
+function saveDraftSoon(){clearTimeout(cartTimer);cartTimer=setTimeout(saveCartDraft,700)}
+async function saveCartDraft(){try{let prof=JSON.parse(localStorage.getItem('tff_profile')||'{}'),total=cart.reduce((s,x)=>s+Number(x.price||0),0);await sb.rpc('save_cart_draft',{p_guest_id:guestId,p_customer_name:prof.name||null,p_mobile:prof.mobile||null,p_area:prof.area||null,p_items:cartItems(),p_total:total})}catch(e){console.log('draft',e)}}
+function isWished(id){return wishlist.map(String).includes(String(id))}
+function updateWishCount(){document.getElementById('wishCount').textContent=wishlist.length}
+function toggleWish(id){id=String(id);wishlist=isWished(id)?wishlist.filter(x=>String(x)!==id):[...wishlist,id];localStorage.setItem('tff_wishlist',JSON.stringify(wishlist));updateWishCount();render();renderWishlist();if(selectedProduct&&String(selectedProduct.id)===id)openProduct(id)}
+function toggleWishlist(){let p=document.getElementById('wishlistPanel');p.classList.toggle('show');renderWishlist();if(p.classList.contains('show'))p.scrollIntoView({behavior:'smooth'})}
+function renderWishlist(){let box=document.getElementById('wishlistGrid');if(!box)return;let arr=products.filter(p=>isWished(p.id));box.innerHTML=arr.length?arr.map(p=>`<div class="card">${p.image_url?`<img loading="lazy" src="${esc(p.image_url)}" alt="${esc(p.name)}" onerror="this.style.display='none';this.nextElementSibling?.classList.remove('hidden')">`:`<div class="emoji">${p.emoji||'🛒'}</div>`}<h3>${esc(p.name)}</h3><div class="price">₹${Number(p.price||0).toFixed(0)}</div><button class="btn green" onclick="add('${String(p.id).replace(/'/g,"\\'")}')">Add to Cart</button><button class="btn light" onclick="toggleWish('${String(p.id).replace(/'/g,"\\'")}')">Remove</button></div>`).join(''):'<div class="muted">Wishlist এখন খালি।</div>'}
+function openProduct(id){let p=products.find(x=>String(x.id)===String(id));if(!p)return;selectedProduct=p;document.getElementById('productDetail').innerHTML=`${p.image_url?`<img class="pdImg" src="${esc(p.image_url)}" alt="${esc(p.name)}">`:`<div class="emoji" style="padding:25px">${p.emoji||'🛒'}</div>`}<div class="pdBody"><div class="pdTitle">${esc(p.name)}</div><div class="muted">${esc(p.description||'Fresh • Hygienic • Quality checked')}</div><div class="pdPrice">₹${Number(p.price||0).toFixed(0)}</div><div class="pdStock">In stock</div><div class="muted">🚚 Next-day Home Delivery • আজ রাত ১১:৫৯-এর মধ্যে অর্ডার করলে আগামীকাল</div>${['Fish','Seafood','Meat'].includes(normCat(p.category))?`<div class="field"><label>Preparation / Cutting</label><select id="pdPrep" style="width:100%;padding:12px;border:1px solid #d5dbe3;border-radius:10px"><option>Standard Clean & Cut</option><option>Whole / No Cutting</option><option>Curry Cut</option><option>Steak Cut</option><option>Special instruction in Order Note</option></select></div>`:''}<div class="qtyRow"><b>Quantity</b><select id="pdQty"><option>1</option><option>2</option><option>3</option><option>4</option><option>5</option></select></div><div class="actionStack"><button class="cartBtn" onclick="detailAddCart()">Add to cart</button><button class="buyBtn" onclick="detailBuyNow()">Buy Now</button><button class="wishBtn" onclick="toggleWish('${String(p.id).replace(/'/g,"\\'")}')">${isWished(p.id)?'♥ Remove from Wish List':'♡ Add to Wish List'}</button></div><div class="trustBox"><b>Shop with confidence</b><div class="trustGrid"><span>✓ Fresh & Hygienic</span><span>✓ Secure order</span><span>🚚 Home Delivery</span><span>🔪 Cutting available</span></div></div><div class="trustBox"><div><span class="muted">Delivered by</span> <b>Tarakeswar Fresh Fish</b></div><div><span class="muted">Order support</span> <b>WhatsApp 8100227692</b></div></div></div>`;document.getElementById('productModal').classList.add('show')}
+function closeProduct(){document.getElementById('productModal').classList.remove('show')}
+function detailAddCart(){if(!selectedProduct)return;let q=Number(document.getElementById('pdQty')?.value||1),prep=document.getElementById('pdPrep')?.value||'';for(let i=0;i<q;i++)cart.push({...selectedProduct,prep});updateCart();render();saveDraftSoon();closeProduct()}
+function detailBuyNow(){if(!selectedProduct)return;let q=Number(document.getElementById('pdQty')?.value||1),prep=document.getElementById('pdPrep')?.value||'';cart=[];for(let i=0;i<q;i++)cart.push({...selectedProduct,prep});updateCart();render();closeProduct();openCheckout()}
+function buyNow(id){let p=products.find(x=>String(x.id)===String(id));if(!p)return;cart=[p];updateCart();openCheckout()}
+function updateCart(){let total=cart.reduce((s,x)=>s+Number(x.price||0),0);document.getElementById('cartCount').textContent=cart.length+' items';document.getElementById('cartTotal').textContent='₹'+total.toFixed(0);refreshPaymentPreview()}
+function tomorrowDate(){let d=new Date();d.setDate(d.getDate()+1);return d}
+function isoLocalDate(d){return d.toLocaleDateString('en-CA',{timeZone:'Asia/Kolkata'})}
+function prettyDate(d){return d.toLocaleDateString('bn-IN',{weekday:'long',day:'numeric',month:'long',year:'numeric',timeZone:'Asia/Kolkata'})}
+function openCheckout(){if(!cart.length)return alert('কার্টে পণ্য যোগ করুন');let total=cart.reduce((s,x)=>s+Number(x.price||0),0);document.getElementById('orderSummary').innerHTML=cartItems().map(x=>`• ${esc(x.name)} × ${x.qty} — ₹${Number(x.line_total||0).toFixed(0)}`).join('<br>')+`<hr><b>মোট ₹${total.toFixed(0)}</b>`;let min=Math.max(499,Number(settings.min_order||499));let m=document.getElementById('minimumOrderMsg');if(m)m.innerHTML=total<min?`🔔 <b>Minimum order ₹${min}</b>। আরও <b>₹${(min-total).toFixed(0)}</b> মূল্যের product Add করুন, তারপর order confirm হবে।`:`✅ আপনার cart minimum order ₹${min} পূরণ করেছে।`;let prof=JSON.parse(localStorage.getItem('tff_profile')||'{}');if(prof.name)custName.value=prof.name;if(prof.mobile)custMobile.value=prof.mobile;if(prof.area)custArea.value=prof.area;deliveryPromise.textContent=`আজ রাত ১১:৫৯-এর মধ্যে Confirm করলে ${prettyDate(tomorrowDate())} ডেলিভারি পাবেন।`;refreshPaymentPreview();document.getElementById('checkoutModal').classList.add('show')}
+function refreshPaymentPreview(){let total=cart.reduce((s,x)=>s+Number(x.price||0),0),method=document.querySelector('input[name=payment]:checked')?.value||'COD_ADVANCE';let adv=Number(settings.cod_advance_percent||20),disc=Number(settings.online_discount_percent||2),wd=Number(settings.wallet_discount_percent||2),min=Math.max(499,Number(settings.min_order||499));let mm=document.getElementById('minimumOrderMsg');if(mm)mm.innerHTML=total<min?`🔔 <b>Minimum order ₹${min}</b> — আরও <b>₹${(min-total).toFixed(0)}</b> product Add করুন।`:`✅ Minimum order ₹${min} পূরণ হয়েছে।`;if(document.getElementById('codLabel'))codLabel.textContent=`${adv}% Advance + বাকি Delivery-তে`;if(document.getElementById('onlineLabel'))onlineLabel.textContent=`100% Online • ${disc}% Discount`;if(!document.getElementById('paymentPreview'))return;if(method==='ONLINE_FULL'){let d=total*disc/100;paymentPreview.innerHTML=`Online Discount: <b>-₹${d.toFixed(0)}</b><br>এখন Pay: <b>₹${(total-d).toFixed(0)}</b>`}else if(method==='WALLET'){let d=total*wd/100;paymentPreview.innerHTML=`Wallet Discount: <b>-₹${d.toFixed(0)}</b><br>Wallet থেকে কাটা হবে: <b>₹${(total-d).toFixed(0)}</b><br><small>Wallet balance My Fresh Hub-এ দেখুন।</small>`}else{let a=total*adv/100;paymentPreview.innerHTML=`Advance (${adv}%): <b>₹${a.toFixed(0)}</b><br>Delivery-তে বাকি: <b>₹${(total-a).toFixed(0)}</b>`}}
+function closeCheckout(){document.getElementById('checkoutModal').classList.remove('show')}
+function cleanMobile(v){return String(v||'').replace(/\D/g,'').replace(/^91(?=\d{10}$)/,'')}
+async function submitOrder(){
+ const name=custName.value.trim(),mobile=cleanMobile(custMobile.value),area=custArea.value.trim(),referral=refCode.value.trim().toUpperCase(),note=custNote.value.trim();
+ if(!name||mobile.length!==10||!area)return alert('নাম, 10 digit মোবাইল এবং এলাকা দিন।'); const totalNow=cart.reduce((s,x)=>s+Number(x.price||0),0),minOrder=Math.max(499,Number(settings.min_order||499)); if(totalNow<minOrder){return alert(`Minimum order ₹${minOrder}। আরও ₹${(minOrder-totalNow).toFixed(0)} মূল্যের product Add করুন।`);}
+ const slot=document.querySelector('input[name=slot]:checked')?.value||'Morning • 7 AM–11 AM',method=document.querySelector('input[name=payment]:checked')?.value||'COD_ADVANCE'; if(method!=='WALLET'&&!window.Razorpay)return alert('Payment system load হয়নি। Internet check করুন।');
+ const btn=confirmCheckout;btn.disabled=true;checkoutMsg.textContent='🔒 Secure checkout তৈরি হচ্ছে...';
+ const deliveryDate=isoLocalDate(tomorrowDate());
+ try{
+  if(method==='WALLET'){
+   checkoutMsg.textContent='💳 Wallet balance verify হচ্ছে...';
+   const wr=await fetch((window.TFF_API_BASE||'')+'/api/wallet-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,mobile,area,referral_code:referral||null,items:cartItems(),delivery_date:deliveryDate,delivery_slot:slot,customer_note:note||null,guest_id:guestId})});
+   const w=await wr.json(); if(!wr.ok||!w.ok)throw new Error(w.error||'Wallet order failed');
+   localStorage.setItem('tff_last_order',JSON.stringify({id:w.order_id,order_no:w.order_no,mobile,name,area,items:cartItems(),total:totalNow,status:'New',deliveryDate,slot,method:'WALLET',payment_verified:true,delivery_otp:w.delivery_otp,time:new Date().toISOString()})); localStorage.setItem('tff_profile',JSON.stringify({name,mobile,area}));
+   confirmDetails.innerHTML=`<b>Order ID: ${esc(w.order_no)}</b><br><span class="securityBadge">💳 Wallet Payment Verified</span><br><br>✅ Wallet থেকে ₹${Number(w.payable_total).toFixed(0)} কাটা হয়েছে।<br>🎁 Wallet discount: ₹${Number(w.discount_amount).toFixed(0)}<br>💰 New Wallet Balance: ₹${Number(w.wallet_balance).toFixed(0)}${w.delivery_otp?`<div class="otpBox">${esc(w.delivery_otp)}</div><small>Delivery-এর সময় এই 4-digit OTP rider-কে বলবেন।</small>`:''}`;
+   checkoutModal.classList.remove('show');confirmModal.classList.add('show');cart=[];updateCart();render();checkoutMsg.textContent='';btn.disabled=false;return;
+  }
+  const cr=await fetch((window.TFF_API_BASE||'')+'/api/create-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({name,mobile,area,referral_code:referral||null,items:cartItems(),delivery_date:deliveryDate,delivery_slot:slot,payment_method:method,customer_note:note||null,guest_id:guestId})});
+  const created=await cr.json();if(!cr.ok)throw new Error(created.error||'Secure checkout তৈরি হয়নি'); checkoutMsg.textContent='Razorpay Secure Checkout খুলছে...';
+  const payment=await new Promise((resolve,reject)=>{let done=false;const rz=new Razorpay({key:created.key_id,amount:created.amount,currency:created.currency||'INR',name:'Tarakeswar Fresh Fish',description:method==='ONLINE_FULL'?'Full Online Payment':'COD Advance Payment',order_id:created.order_id,prefill:{name,contact:mobile},notes:{delivery_date:deliveryDate,delivery_slot:slot},theme:{color:'#0c9b50'},modal:{ondismiss:()=>{if(!done)reject(new Error('Payment cancelled. Order place হয়নি।'))}},handler:async(resp)=>{try{checkoutMsg.textContent='🔐 Payment server-এ verify হচ্ছে...';const vr=await fetch((window.TFF_API_BASE||'')+'/api/verify-checkout',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({session_id:created.session_id,...resp})});const v=await vr.json();if(!vr.ok||!v.verified)throw new Error(v.error||'Payment verify হয়নি');done=true;resolve({...v,response:resp})}catch(e){done=true;reject(e)}}});rz.on('payment.failed',r=>{done=true;reject(new Error(r?.error?.description||'Payment failed. Order place হয়নি।'))});rz.open()});
+  const last={id:payment.order_id,order_no:payment.order_no,mobile,name,area,items:cartItems(),total:created.total,status:'New',deliveryDate,slot,method,payment_verified:true,razorpay_payment_id:payment.payment_id,delivery_otp:payment.delivery_otp,time:new Date().toISOString()};localStorage.setItem('tff_last_order',JSON.stringify(last));localStorage.setItem('tff_profile',JSON.stringify({name,mobile,area}));
+  let msg=`✅ SECURE PAID ORDER CONFIRMED\nOrder ID: ${payment.order_no}\nমোট: ₹${Number(created.total).toFixed(0)}\nPaid now: ₹${Number(created.pay_now).toFixed(0)}\nPayment ID: ${payment.payment_id}\nDelivery: ${deliveryDate} • ${slot}\nনাম: ${name}\nএলাকা: ${area}\nমোবাইল: ${mobile}`;if(payment.referral_code)msg+=`\nReferral Code: ${payment.referral_code}`;
+  waConfirmBtn.onclick=()=>location.href='https://wa.me/918100227692?text='+encodeURIComponent(msg);
+  confirmDetails.innerHTML=`<b>Order ID: ${esc(payment.order_no)}</b><br><span class="securityBadge">🔒 Server Verified Payment</span><br><br>✅ Payment captured & order confirmed.<br><small>Payment ID: ${esc(payment.payment_id)}</small><hr>🚚 Delivery: <b>${esc(prettyDate(tomorrowDate()))}</b><br>⏰ Slot: <b>${esc(slot)}</b>${payment.delivery_otp?`<div class="otpBox">${esc(payment.delivery_otp)}</div><small>Delivery-এর সময় এই 4-digit OTP rider-কে বলবেন।</small>`:''}`;
+  checkoutModal.classList.remove('show');confirmModal.classList.add('show');cart=[];updateCart();render();checkoutMsg.textContent='';
+ }catch(e){console.error(e);checkoutMsg.textContent=e.message||String(e);alert(e.message||'Payment/Order failed')}finally{btn.disabled=false}
+}
+function openTracker(){trackModal.classList.add('show');let l=JSON.parse(localStorage.getItem('tff_last_order')||'null'),p=JSON.parse(localStorage.getItem('tff_profile')||'{}');if(l?.order_no)trackOrderNo.value=l.order_no;if(p.mobile)trackMobile.value=p.mobile}
+function closeTracker(){trackModal.classList.remove('show');clearInterval(trackTimer)}
+function openTrackerFromLast(){confirmModal.classList.remove('show');openTracker();trackOrder();clearInterval(trackTimer);trackTimer=setInterval(trackOrder,15000)}
+async function trackOrder(){let ono=trackOrderNo.value.trim(),mob=cleanMobile(trackMobile.value);if(!ono||mob.length!==10)return;const {data,error}=await sb.rpc('track_order',{p_order_no:ono,p_mobile:mob});if(error){trackResult.textContent=error.message;return}let r=Array.isArray(data)?data[0]:data;if(!r){trackResult.innerHTML='<div class="notice">Order পাওয়া যায়নি। Order ID ও mobile check করুন।</div>';return}let prev=localStorage.getItem('tff_track_status');if(prev&&prev!==r.status&&'Notification'in window&&Notification.permission==='granted')new Notification('Tarakeswar Fresh Fish',{body:`Order ${r.order_no}: ${r.status}`});localStorage.setItem('tff_track_status',r.status);let steps=['New','Confirmed','Preparing','Packed','Out for Delivery','Delivered'],idx=steps.indexOf(r.status);let tl=steps.map((x,i)=>`<div class="step ${i<=idx?'on':''}">${i<=idx?'✅':'○'} ${x}</div>`).join('');let map=(r.delivery_lat&&r.delivery_lng)?`<a class="btn green" target="_blank" href="https://www.google.com/maps?q=${r.delivery_lat},${r.delivery_lng}">🛵 Rider Live Location দেখুন</a>`:'';trackResult.innerHTML=`<div class="confirmBox"><b>${esc(r.order_no)}</b><br>বর্তমান Status: <b>${esc(r.status)}</b><br>Delivery: ${esc(r.delivery_date||'')} • ${esc(r.delivery_slot||'')}</div><div class="timeline">${tl}</div>${map}`}
+
+function openHub(){hubModal.classList.add('show');let p=JSON.parse(localStorage.getItem('tff_profile')||'{}');if(p.mobile)hubMobile.value=p.mobile}function closeHub(){hubModal.classList.remove('show')}
+async function loadHub(){let mobile=cleanMobile(hubMobile.value);if(mobile.length!==10)return alert('10 digit mobile দিন');hubResult.innerHTML='Loading...';const {data,error}=await sb.rpc('get_customer_hub_v4',{p_mobile:mobile,p_guest_id:guestId});if(error){hubResult.innerHTML='<div class="notice">'+esc(error.message)+'</div>';return}let r=Array.isArray(data)?data[0]:data;if(!r){hubResult.innerHTML='<div class="notice">এই device/mobile-এর account পাওয়া যায়নি। আগে একটি verified order করুন।</div>';return}let orders=Array.isArray(r.recent_orders)?r.recent_orders:[];hubResult.innerHTML=`<div style="display:flex;align-items:center;gap:12px"><img src="${esc(r.profile_photo_url||'/logo-transparent.png')}" onerror="this.src='/logo-transparent.png'" style="width:68px;height:68px;border-radius:50%;object-fit:cover;border:3px solid #e8eef5"><div><b>${esc(mobile)}</b><div class="muted">My Fresh Hub</div></div></div><div class="field"><label>Profile Photo</label><input id="customerPhotoFile" type="file" accept="image/jpeg,image/png,image/webp"><button class="btn light" style="margin-top:7px" onclick="uploadCustomerPhoto()">📷 Photo Upload</button><small id="photoMsg" class="muted"></small></div><div class="walletGrid"><div class="walletStat"><span class="muted">Fresh Wallet</span><strong>₹${Number(r.wallet_credit||0).toFixed(0)}</strong></div><div class="walletStat"><span class="muted">Fresh Points</span><strong>⭐ ${r.fresh_points||0}</strong></div><div class="walletStat"><span class="muted">Member</span><strong>${r.vip_member?'👑 VIP':'Silver'}</strong></div></div><div class="secureNote" style="margin-top:10px">Referral Code: <b>${esc(r.referral_code||'')}</b><br>Successful rewards: ₹${Number(r.referral_credit_total||0).toFixed(0)}<br><b>💳 Wallet payment-এ 2% discount</b> • Recharge Admin থেকে করা যাবে।</div><h3>Recent Orders</h3>${orders.length?orders.map(o=>`<div class="orderMini"><b>${esc(o.order_no)}</b> <span class="statusPill">${esc(o.status)}</span><br><span class="muted">₹${Number(o.total||0).toFixed(0)} • ${esc(o.delivery_date||'')}</span></div>`).join(''):'<div class="muted">No recent orders</div>'}`}
+async function uploadCustomerPhoto(){const f=document.getElementById('customerPhotoFile')?.files?.[0];const msg=document.getElementById('photoMsg');if(!f)return;if(f.size>2*1024*1024){msg.textContent='❌ Photo 2MB-এর মধ্যে দিন';return}const reader=new FileReader();reader.onload=async()=>{try{msg.textContent='⏳ Upload হচ্ছে...';const r=await fetch((window.TFF_API_BASE||'')+'/api/customer-profile',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({mobile:cleanMobile(hubMobile.value),guest_id:guestId,data_url:reader.result})});const d=await r.json();if(!r.ok||!d.ok)throw new Error(d.error||'Upload failed');msg.textContent='✅ Profile photo updated';loadHub()}catch(e){msg.textContent='❌ '+e.message}};reader.readAsDataURL(f)}
+let deferredInstall=null;window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;const b=document.getElementById('installBtn');if(b)b.style.display='block'});window.addEventListener('appinstalled',()=>{deferredInstall=null;const b=document.getElementById('installBtn');if(b)b.style.display='none'});async function installApp(){if(deferredInstall){deferredInstall.prompt();const r=await deferredInstall.userChoice;deferredInstall=null;const b=document.getElementById('installBtn');if(b)b.style.display='none';return r}alert('এই browser এখন direct install prompt দেয়নি। Chrome ⋮ → Add to Home screen / Install app ব্যবহার করুন।')}
+if('serviceWorker'in navigator)window.addEventListener('load',()=>navigator.serviceWorker.register('/sw.js').catch(()=>{}));if('Notification'in window&&Notification.permission==='default')setTimeout(()=>Notification.requestPermission().catch(()=>{}),8000);
+async function loadAutoBanner(){try{const {data}=await sb.from('banner_assets').select('*').eq('is_active',true).order('created_at',{ascending:false}).limit(1).maybeSingle();const box=document.getElementById('autoBannerBox');if(!box)return;if(!data){box.style.display='none';return}box.style.display='block';box.innerHTML=`<div class="tff-banner-click" role="button" tabindex="0" onclick="openAutoBannerTarget()"><img src="${esc(data.image_url)}" alt="${esc(data.title||'Fresh Fish Offer')}" class="clickableOffer"></div><div class="abActions"><button onclick="shareAutoBanner()">📤 WhatsApp Share</button><a target="_blank" href="${esc(data.image_url)}">Open Banner</a></div>`;window._tffBanner=data}catch(e){console.warn('auto banner',e)}}
+async function shareAutoBanner(){const d=window._tffBanner;if(!d)return;if(navigator.share){try{await navigator.share({title:d.title||'Tarakeswar Fresh Fish',text:d.share_text||d.title||'',url:d.image_url})}catch(e){}}else location.href='https://wa.me/?text='+encodeURIComponent((d.share_text||d.title||'')+'\\n'+d.image_url)}
+function openAutoBannerTarget(){const d=window._tffBanner;if(!d)return;const u=d.click_url||'/';if(u==='/')return goComboSection();location.href=u}
+async function loadOffers(){const now=new Date().toISOString();const {data,error}=await sb.from('offers').select('*').eq('enabled',true).lte('start_at',now).gte('end_at',now).order('priority',{ascending:false});const box=document.getElementById('activeOffers');if(error){box.textContent='Offers table setup হলে এখানে active offer দেখাবে।';return}if(!data?.length){box.textContent='এই মুহূর্তে কোনো live flash/secret offer নেই। Group update দেখুন ❤️';return}box.innerHTML=data.map(o=>`<div class="offerItem"><b>${esc(o.badge||'🔥')} ${esc(o.title)}</b><div>${esc(o.description||'')}</div>${o.price?`<strong>₹${Number(o.price).toFixed(0)}</strong>`:''}<div class="muted">শেষ: ${new Date(o.end_at).toLocaleString('en-IN')}</div></div>`).join('')}
+async function loadSettings(){const {data}=await sb.from('public_settings').select('*').limit(1).maybeSingle();if(data){settings={...settings,...data};if(data.min_order!=null)settings.min_order=Math.max(499,Number(data.min_order));if(data.wallet_discount_percent!=null)settings.wallet_discount_percent=Number(data.wallet_discount_percent);if(data.feedback_form_url){let b=document.getElementById('feedbackBtn');b.href=data.feedback_form_url;b.style.display='block'}}refreshPaymentPreview()}
+function setWeekly(){const d=new Date().getDay();const plan={0:['🔥 SUNDAY SECRET COMBO','শুধু Group Member-দের জন্য আজ Secret Combo / Lucky Member update দেখুন।'],1:['🐟 MONDAY FRESH STOCK','নতুন সপ্তাহের Fresh Stock দেখুন এবং পছন্দের মাছ আগে Reserve করুন।'],2:['💰 TUESDAY REFER & EARN','বন্ধুকে Invite করুন। তাঁর প্রথম delivered order complete হলে referral reward automatically যোগ হবে।'],3:['⭐ WEDNESDAY FRESH POINTS','প্রতি ₹500 delivered order-এ 1 Fresh Point automatically জমবে।'],4:['⚡ THURSDAY FLASH DEAL','আজ Group-only Flash Deal আসতে পারে—Active Offers section দেখুন।'],5:['🎁 FRIDAY WEEKEND BOOKING','শনিবার/রবিবারের মাছ ও Chicken আগে থেকে booking করুন।'],6:['👑 SATURDAY VIP CLUB','মাসে 4+ delivered order হলে VIP Member status automatically হবে।']};document.getElementById('dayTag').textContent='MEMBER UPDATE';document.getElementById('weeklyTitle').textContent=plan[d][0];document.getElementById('weeklyText').textContent=plan[d][1]}
+function scrollToOffers(){document.getElementById('offers').scrollIntoView({behavior:'smooth'})}
+(function slider(){const s=document.getElementById('offerSlides'),dots=document.getElementById('offerDots');let i=0,t;const n=s.children.length;for(let k=0;k<n;k++){let d=document.createElement('span');d.className='dot'+(k===0?' active':'');d.onclick=()=>go(k);dots.appendChild(d)}function go(x){i=(x+n)%n;s.style.transform=`translateX(-${i*100}%)`;[...dots.children].forEach((d,k)=>d.classList.toggle('active',k===i))}function auto(){t=setInterval(()=>go(i+1),4000)}s.addEventListener('touchstart',()=>clearInterval(t),{passive:true});s.addEventListener('touchend',auto,{passive:true});auto()})();
+document.querySelectorAll('#offerSlides .slide').forEach(slide=>{
+  slide.classList.add('clickableOffer');
+  slide.setAttribute('role','button');
+  slide.setAttribute('tabindex','0');
+  slide.addEventListener('click',goComboSection);
+  slide.addEventListener('keydown',e=>{if(e.key==='Enter'||e.key===' ')goComboSection();});
+});
+boot();
+
+async function enableNotifications(){
+ try{
+  if(!('Notification' in window)||!('serviceWorker' in navigator)||!('PushManager' in window))return alert('এই browser-এ push notification support নেই। Chrome ব্যবহার করুন।');
+  const perm=await Notification.requestPermission(); if(perm!=='granted')return alert('Notification permission Allow করুন।');
+  const reg=await navigator.serviceWorker.ready;
+  const kr=await fetch((window.TFF_API_BASE||'')+'/api/vapid-public-key'); const kd=await kr.json();
+  if(!kd.publicKey){ if('Notification' in window && Notification.permission==='granted'){ localStorage.setItem('tff_local_notifications','1'); return alert('🔔 এই ফোনে local notifications ON আছে। Server push চালু করতে পরে VAPID keys যোগ করতে হবে।'); } return alert('🔔 এই ফোনে notification permission ON হয়েছে। Server push এখনো configure করা হয়নি—app ব্যবহার ও test করা যাবে।'); }
+  const vapidKey=Uint8Array.from(atob(kd.publicKey.replace(/-/g,'+').replace(/_/g,'/')),c=>c.charCodeAt(0));
+  let sub=await reg.pushManager.getSubscription(); if(!sub)sub=await reg.pushManager.subscribe({userVisibleOnly:true,applicationServerKey:vapidKey});
+  const rr=await fetch((window.TFF_API_BASE||'')+'/api/subscribe-push',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({subscription:sub.toJSON(),guest_id:guestId})});
+  if(!rr.ok){const d=await rr.json();throw new Error(d.error||'Subscribe failed')}
+  alert('🔔 Notifications ON হয়েছে। Offer, order, stock ও update পাবেন।');
+ }catch(e){console.error(e);alert('Notification setup হয়নি: '+(e.message||e))}
+}
+
+if('serviceWorker' in navigator)window.addEventListener('load',async()=>{
+  try{
+    const reg=await navigator.serviceWorker.register('sw.js',{updateViaCache:'none'});
+    // Check for a new deployment regularly while the app is open.
+    const check=()=>reg.update().catch(()=>{});
+    check();
+    setInterval(check, 5*60*1000);
+    // New service worker activates silently; refresh once so the customer gets
+    // the newest assets without seeing an "Update available" banner/button.
+    let refreshing=false;
+    navigator.serviceWorker.addEventListener('controllerchange',()=>{
+      if(refreshing)return;
+      refreshing=true;
+      window.location.reload();
+    });
+  }catch(e){console.warn('Service worker registration failed',e)}
+});
+
+</script><script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
+<script>
+const APP_URL=location.origin+'/';
+function openQr(){
+  const box=document.getElementById('qrBox'); box.style.display=box.style.display==='none'?'block':'none';
+  if(box.style.display==='block'){
+    const holder=document.getElementById('qrCanvas'); holder.innerHTML='';
+    new QRCode(holder,{text:APP_URL,width:190,height:190,correctLevel:QRCode.CorrectLevel.M});
+    document.getElementById('qrUrl').textContent=APP_URL;
+  }
+}
+async function copyAppUrl(){try{await navigator.clipboard.writeText(APP_URL);alert('App link copied ✅');}catch(e){prompt('Copy this App link:',APP_URL)}}
+async function shareApp(){if(navigator.share){await navigator.share({title:'Tarakeswar Fresh Fish',text:'Fresh Fish & Combo Order App',url:APP_URL}).catch(()=>{});}else copyAppUrl()}
+</script><script src="/tff-v7-smart-experience.js"></script><script src="/tff-v6-runtime.js"></script><script src="/tff-v6-final.js"></script><script src="/tff-final-auto-machine.js"></script><script src="/tff-v7-step4-advanced.js"></script></body></html>

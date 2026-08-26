@@ -1,0 +1,33 @@
+TARAKESWAR FRESH FISH — V5.2 CLEAN FINAL
+========================================
+
+এই build-টি V5.2 Ultimate Complete Final-3 ZIP-এর উপর তৈরি। Existing business/payment/admin/delivery logic রাখা হয়েছে; customer UI-র duplicate/floating clutter clean করা হয়েছে।
+
+CUSTOMER APP
+------------
+1. Existing 3-theme animated splash/loading flow রাখা হয়েছে:
+   - Theme 1: Green
+   - Theme 2: Orange/Magenta
+   - Theme 3: Blue/Purple
+   - Orbit animation, logo float, chips এবং festival animation রাখা হয়েছে।
+2. Customer header/splash-এর logo এখন transparent PNG ব্যবহার করে। Outer background আর থাকবে না।
+3. Fixed header tagline “আপনার সাথে… আপনার পাতে…!” সরানো হয়েছে।
+4. V5.1 scrolling marquee/tagline রাখা হয়েছে।
+5. Red-marked floating Install / Share / Copy Link / Refresh / Online layer সরানো হয়েছে।
+6. Red-marked floating hamburger/settings bubble সরানো হয়েছে।
+7. Floating online/offline status pill সরানো হয়েছে।
+8. AI Assistant floating bubble রাখা হয়েছে।
+9. Existing bottom navigation রাখা হয়েছে।
+10. Top App Download QR এবং App Link area রাখা হয়েছে।
+11. Duplicate Help & Support section থেকে একটি সরিয়ে একটি retained Help & Support Center রাখা হয়েছে। Help Desk action retained section-এ যাবে।
+
+ADMIN / DELIVERY
+----------------
+1. Existing Admin and Delivery feature scripts untouched.
+2. Delivery GPS, live location, OTP, queue, earnings, partner controls এবং Delivery Operations Center code untouched.
+3. Admin products, orders, offers, members, delivery partners, saved carts, auto banner, settings, health, app center, system status, backup/restore ইত্যাদি existing code untouched.
+
+IMPORTANT
+---------
+- Database schema, Razorpay/payment verification, Cloudflare Functions বা Supabase logic এই UI cleanup-এর জন্য পরিবর্তন করা হয়নি।
+- This is a UI cleanup layer, not a backend rewrite.

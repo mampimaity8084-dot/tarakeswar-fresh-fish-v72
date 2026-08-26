@@ -1,0 +1,168 @@
+<!doctype html>
+<html lang="bn">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Tarakeswar Fresh — Delivery Partner Pro</title><link rel="manifest" href="delivery-manifest.webmanifest"><meta name="theme-color" content="#071b34">
+<style>
+:root{--navy:#071b34;--green:#0c9b50;--bg:#f4f7fb;--card:#fff;--muted:#687386;--danger:#c62828;--gold:#f59e0b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:#172033;font-family:system-ui,-apple-system,"Noto Sans Bengali",sans-serif}
+header{position:sticky;top:0;z-index:20;background:#fff;padding:11px 14px;box-shadow:0 2px 14px #0001}.bar{max-width:1000px;margin:auto;display:flex;align-items:center;gap:10px}.logo{width:46px;height:46px;border-radius:14px;object-fit:cover}.spacer{flex:1}
+.wrap{max-width:1000px;margin:auto;padding:14px}.panel,.order,.stat{background:var(--card);border-radius:20px;padding:16px;box-shadow:0 7px 24px #0000000a;margin-bottom:12px}
+.hero{background:linear-gradient(135deg,#071b34,#0b7e49);color:#fff;border-radius:24px;padding:20px;margin-bottom:14px}.hero h1{margin:0 0 4px;font-size:25px}.muted{color:var(--muted)}.hero .muted{color:#dbeee4}
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:14px 0}.stat b{display:block;font-size:24px}.stat small{color:var(--muted)}
+.actions{display:flex;gap:8px;flex-wrap:wrap;margin-top:12px}.btn{border:0;border-radius:12px;padding:10px 13px;font-weight:850;cursor:pointer;touch-action:manipulation;-webkit-tap-highlight-color:transparent}.green{background:var(--green);color:#fff}.dark{background:var(--navy);color:#fff}.light{background:#edf1f6}.gold{background:#fff3cd;color:#8a5b00}.danger{background:#fee2e2;color:#991b1b}
+.order{border-left:5px solid var(--green)}.orderTop{display:flex;justify-content:space-between;gap:10px;align-items:flex-start}.badge{display:inline-block;border-radius:999px;padding:5px 9px;font-size:12px;font-weight:800;background:#eaf8f0;color:#08783d}.itemList{background:#f7f9fb;border-radius:13px;padding:10px;margin-top:10px}.item{display:flex;justify-content:space-between;padding:4px 0}.phone{font-size:18px;font-weight:850}.empty{text-align:center;padding:25px;color:var(--muted)}
+.gate{position:fixed;inset:0;background:linear-gradient(135deg,#071b34,#0b7e49);display:flex;align-items:center;justify-content:center;padding:18px;z-index:99}.gateCard{width:min(430px,100%);background:#fff;border-radius:24px;padding:22px}.gateCard input{width:100%;padding:13px;border:1px solid #d7dde6;border-radius:12px;margin:6px 0;font-size:15px}
+.toast{position:fixed;left:50%;bottom:20px;transform:translateX(-50%);background:#071b34;color:#fff;padding:11px 15px;border-radius:12px;display:none;z-index:100}
+@media(max-width:700px){.stats{grid-template-columns:repeat(2,1fr)}.bar b{font-size:14px}.hero h1{font-size:22px}}
+
+/* V6.2 final mobile touch fix */
+.deliveryTouchFix{padding-bottom:calc(110px + env(safe-area-inset-bottom))!important}
+@media(max-width:600px){main,.page,.container{padding-bottom:calc(120px + env(safe-area-inset-bottom))}}
+</style>
+<style id="v623-delivery-clean">.online-pill,.online-indicator,.floating-pill,.floating-bar,.delivery-float{display:none!important}</style>
+<script>(function(){try{const k='tff-v623-delivery-clean';if(!sessionStorage.getItem(k)){sessionStorage.setItem(k,'1');Promise.all([navigator.serviceWorker?.getRegistrations?.().then(rs=>Promise.all(rs.map(r=>r.unregister()))),caches?.keys?.().then(ks=>Promise.all(ks.map(x=>caches.delete(x))))]).finally(()=>location.reload());}}catch(e){}})();</script>
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+<script src="supabase-config.js"></script><script src="native-config.js" onerror="this.remove()"></script>
+  <link rel="stylesheet" href="v6.2.4-dashboard-clean.css">
+</head>
+<body>
+<div id="gate" class="gate"><div class="gateCard"><img src="logo-transparent.png" class="logo"><h2>🛵 Delivery Partner Login</h2><p class="muted">Secure delivery dashboard</p><input id="email" type="email" placeholder="Delivery email"><input id="password" type="password" placeholder="Password"><button class="btn green" style="width:100%;margin-top:7px" onclick="login()">Login</button><div id="err" class="muted" style="margin-top:8px"></div></div></div>
+<header><div class="bar"><img src="logo-transparent.png" class="logo"><b>Tarakeswar Fresh<br><small>Delivery Partner Pro</small></b><div class="spacer"></div><button id="installBtn" class="btn light" style="display:none" onclick="installDelivery()">📲 Install</button><button class="btn light" onclick="location.href='index.html'">Store</button><button class="btn light" onclick="location.href='admin.html'">Admin</button><button class="btn dark" onclick="logout()">Logout</button></div></header>
+<main class="wrap">
+<section class="hero"><h1>🛵 আজকের Delivery Dashboard</h1><div id="partnerLine" class="muted">Loading partner...</div><div id="partnerSessionLine" class="muted" style="margin-top:5px"></div><div class="actions"><button class="btn green" onclick="load()">↻ Refresh Orders</button><button class="btn light" onclick="startAllGps()">📍 Start Live GPS</button></div></section>
+<section class="panel" id="gpsPanel" style="border:1px solid #b9e6ca;background:#f0fff6">
+<div class="panelTitle"><div><h3 style="margin:0">📍 Live GPS Control</h3><small id="gpsStatus" class="muted">GPS বন্ধ আছে</small></div><b id="gpsAccuracy">—</b></div>
+<div id="gpsCoords" class="muted" style="margin-top:8px">Location এখনও পাওয়া যায়নি।</div>
+<div class="actions"><button class="btn green" onclick="startAllGps()">📍 Start Live GPS</button><button class="btn light" onclick="stopGps()">⏹ Stop GPS</button></div>
+</section><section class="stats"><div class="stat"><small>Pending</small><b id="pendingCount">—</b></div><div class="stat"><small>Out for Delivery</small><b id="ofdCount">—</b></div><div class="stat"><small>Delivered</small><b id="deliveredCount">—</b></div><div class="stat"><small>Total Earnings</small><b id="earnings">₹—</b></div></section>
+<section class="panel"><b>📌 Delivery instructions</b><p class="muted" style="margin-bottom:0">Order খুলে customer call/WhatsApp করুন, Navigation দিয়ে location-এ যান, Live GPS চালু রাখুন এবং customer-এর 4-digit OTP নিয়ে delivery complete করুন।</p></section>
+<section class="panel" id="partnerSummaryPanel"><div class="panelTitle"><h3 style="margin:0">👤 Partner Profile</h3><span class="badge">Partner Pro V5</span></div><div id="partnerSummary" class="muted" style="margin-top:8px">Loading profile...</div><div class="stats" style="margin-top:10px"><div class="stat"><small>Today's Earnings</small><b id="todayEarnings">₹—</b></div><div class="stat"><small>Delivery Bonus</small><b id="deliveryBonus">₹—</b></div><div class="stat"><small>Completed</small><b id="completedDeliveries">—</b></div><div class="stat"><small>Status</small><b id="partnerGpsState">OFF</b></div></div></section><section class="panel" id="serviceBenefitsPanel"><b id="serviceName">🚚 Delivery Service</b><p id="serviceSubtitle" class="muted" style="margin:4px 0 8px"></p><div id="serviceBenefits" class="muted"></div><p id="serviceNote" class="muted" style="margin-bottom:0"></p></section>
+<section><h2>📦 My Delivery Queue</h2><div id="orders"><div class="empty">Loading orders...</div></div></section>
+</main><div id="toast" class="toast"></div>
+<script>
+const cfg=window.TFF_SUPABASE||{},sb=supabase.createClient(cfg.url,cfg.publishableKey),$=id=>document.getElementById(id);
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+let currentSession=null,gpsWatch=null,refreshTimer=null,partnerProfile=null,deferredInstall=null;
+function toast(t){const x=$('toast');x.textContent=t;x.style.display='block';clearTimeout(window.tt);window.tt=setTimeout(()=>x.style.display='none',2600)}
+async function boot(){const {data:{session}}=await sb.auth.getSession();currentSession=session;if(session){$('gate').style.display='none';try{await sb.rpc('delivery_session_v4',{p_login:true})}catch(e){}load()}else $('gate').style.display='flex';sb.auth.onAuthStateChange(async(_e,s)=>{currentSession=s;if(s){$('gate').style.display='none';try{await sb.rpc('delivery_session_v4',{p_login:true})}catch(e){}load()}else $('gate').style.display='flex'})}
+async function login(){const {data,error}=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error){$('err').textContent=error.message;return}await sb.rpc('delivery_session_v4',{p_login:true});currentSession=data.session;load()}
+async function logout(){if(gpsWatch)navigator.geolocation.clearWatch(gpsWatch);try{await sb.rpc('delivery_session_v4',{p_login:false})}catch(e){}await sb.auth.signOut();location.reload()}
+async function loadDeliveryServiceInfo(){try{const {data,error}=await sb.from('delivery_service_settings').select('service_name,subtitle,benefits,delivery_note,free_delivery_min,active').eq('id',1).maybeSingle();if(error||!data)return;if($('serviceName'))$('serviceName').textContent='🚚 '+(data.service_name||'Delivery Service');if($('serviceSubtitle'))$('serviceSubtitle').textContent=data.subtitle||'';if($('serviceBenefits'))$('serviceBenefits').innerHTML=(Array.isArray(data.benefits)?data.benefits:[]).map(x=>`<div style="padding:4px 0">✓ ${esc(x)}</div>`).join('');if($('serviceNote'))$('serviceNote').textContent=(data.delivery_note||'')+(data.free_delivery_min?` • Free delivery above ₹${Number(data.free_delivery_min).toFixed(0)}`:'')}catch(e){console.warn('service info',e)}}
+async function deliveryApi(payload){const {data:{session}}=await sb.auth.getSession();if(!session)throw new Error('Delivery login required');const r=await fetch((window.TFF_API_BASE||'')+'/api/delivery-action',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+session.access_token},body:JSON.stringify(payload)});const d=await r.json().catch(()=>({}));if(!r.ok||!d.ok)throw new Error(d.error||'Delivery request failed');return d}
+async function load(){
+ clearTimeout(refreshTimer);
+ if(!currentSession?.user?.id)return;
+ try{
+  const d=await deliveryApi({action:'profile'});const prof=d.profile;if(!prof){throw new Error('Delivery Partner profile পাওয়া যায়নি')}
+  if(prof.active===false)throw new Error('Delivery Partner account inactive');
+  partnerProfile=prof;loadDeliveryServiceInfo();
+  const bonus=Number(prof.base_pay||0)*Number(prof.surge_multiplier||1)+Number(prof.rain_surge||0);
+  $('partnerLine').textContent=`${prof.name||'Delivery Partner'} • ${prof.mobile||'No mobile'} • ${prof.vehicle||'Vehicle not set'}`;
+  $('partnerSessionLine').textContent=`🟢 Login: ${prof.login_at?new Date(prof.login_at).toLocaleString('en-IN'):'—'} • Logout: ${prof.logout_at?new Date(prof.logout_at).toLocaleString('en-IN'):'—'}`;
+  $('earnings').textContent='₹'+Number(prof.total_earnings||0).toFixed(0);
+  $('todayEarnings').textContent='₹'+Number(prof.total_earnings||0).toFixed(0);$('deliveryBonus').textContent='₹'+bonus.toFixed(0);$('completedDeliveries').textContent=String(d.delivered_count||0);
+  $('partnerSummary').innerHTML=`<b>${esc(prof.name||'Delivery Partner')}</b><br>Mobile: ${esc(prof.mobile||'—')} • Partner ID: ${esc(prof.id||'—')}<br>Vehicle: ${esc(prof.vehicle||'—')} • Area: ${esc(prof.settings?.area||'—')}<br>Total Earnings: <b>₹${Number(prof.total_earnings||0).toFixed(0)}</b> • Bonus/Delivery: <b>₹${bonus.toFixed(0)}</b>`;
+  const arr=d.orders||[];$('pendingCount').textContent=arr.filter(o=>o.status==='Packed').length;$('ofdCount').textContent=arr.filter(o=>o.status==='Out for Delivery').length;$('deliveredCount').textContent=d.delivered_count??0;renderOrders(arr);
+ }catch(e){$('partnerLine').textContent='Delivery Partner';$('orders').innerHTML=`<div class="panel error">${esc(e.message)}<br><button class="btn light" onclick="load()">Retry</button></div>`}
+ refreshTimer=setTimeout(load,30000);
+}
+function renderOrders(arr){
+ if(!arr.length){$('orders').innerHTML='<div class="panel empty">🎉 এখন কোনো pending delivery নেই।</div>';return}
+ $('orders').innerHTML=arr.map(o=>{
+  const c=o.customers||{}, items=o.order_items||[];
+  const q=encodeURIComponent(`${c.area||''} ${c.name||''}`);
+  const nav=(c.lat&&c.lng)?`https://www.google.com/maps/dir/?api=1&destination=${encodeURIComponent(c.lat+','+c.lng)}`:`https://www.google.com/maps/search/?api=1&query=${q}`;
+  const wa=c.mobile?`https://wa.me/91${String(c.mobile).replace(/\D/g,'')}`:'#';
+  return `<article class="order"><div class="orderTop"><div><b style="font-size:18px">#${esc(o.order_no)}</b><br><span class="badge">${esc(o.status)}</span></div><b>₹${Number(o.total||0).toFixed(0)}</b></div>
+  <div style="margin-top:10px"><b>${esc(c.name||'Customer')}</b><br><span class="phone">${esc(c.mobile||'No phone')}</span><br><span class="muted">📍 ${esc(c.area||'Address unavailable')}</span></div>
+  <div class="itemList">${items.length?items.map(i=>`<div class="item"><span>${esc(i.product_name)}</span><b>× ${esc(i.qty)}</b></div>`).join(''):'Items unavailable'}</div>
+  <div class="actions">
+   ${c.mobile?`<a class="btn green" href="tel:${esc(c.mobile)}">📞 Call</a><a class="btn light" target="_blank" href="${wa}">💬 WhatsApp</a>`:''}
+   <a class="btn dark" target="_blank" href="${nav}">🧭 Navigate</a>
+   ${o.status==='Packed'?`<button class="btn gold" onclick="setStatus('${o.id}','Out for Delivery')">🛵 Start Delivery</button>`:''}
+   <button class="btn green" onclick="updateLocation('${o.id}')">📍 Live GPS</button>
+   <button class="btn green" onclick="deliverWithOtp('${o.id}')">🔐 Verify OTP</button>
+  </div></article>`
+ }).join('');
+}
+async function setStatus(id,status){try{await deliveryApi({action:'status',order_id:id,status});toast('Status updated ✅');load()}catch(e){toast(e.message)}}
+async function deliverWithOtp(id){const otp=prompt('Customer-এর 4-digit Delivery OTP দিন');if(!otp)return;try{await deliveryApi({action:'verify_otp',order_id:id,otp:String(otp).trim()});toast('✓ OTP Verified — Order Delivered');load()}catch(e){toast(e.message)}}
+let activeGpsOrderIds=[];
+function showGps(pos){
+ const p=pos.coords;
+ $('gpsStatus').textContent='🟢 Live GPS চলছে';
+ $('gpsAccuracy').textContent='±'+Math.round(p.accuracy||0)+' m';
+ $('gpsCoords').textContent=`Lat ${p.latitude.toFixed(6)} • Lng ${p.longitude.toFixed(6)} • ${new Date().toLocaleTimeString()}`;
+}
+async function pushGps(pos,orderIds){const p=pos.coords;showGps(pos);$('partnerGpsState').textContent='ON 🟢';for(const orderId of orderIds){try{await deliveryApi({action:'gps',order_id:orderId,lat:p.latitude,lng:p.longitude,accuracy:p.accuracy,heading:p.heading,speed:p.speed})}catch(e){console.warn('GPS update',e.message)}}}
+function stopGps(){
+ if(gpsWatch){navigator.geolocation.clearWatch(gpsWatch);gpsWatch=null;}
+ $('gpsStatus').textContent='⏹ GPS বন্ধ';$('partnerGpsState').textContent='OFF';
+ toast('Live GPS বন্ধ করা হয়েছে');
+}
+async function startAllGps(){
+ if(!navigator.geolocation)return toast('এই ফোনে GPS support নেই');
+ const {data,error}=await sb.from('orders').select('id').eq('status','Out for Delivery').eq('delivery_partner_id',partnerProfile?.id||'00000000-0000-0000-0000-000000000000');
+ if(error)return toast('GPS orders load হয়নি: '+error.message);
+ activeGpsOrderIds=(data||[]).map(x=>x.id);
+ if(!activeGpsOrderIds.length)return toast('কোনো Out for Delivery order নেই');
+ navigator.geolocation.getCurrentPosition(
+   pos=>{pushGps(pos,activeGpsOrderIds); if(gpsWatch)navigator.geolocation.clearWatch(gpsWatch);
+     gpsWatch=navigator.geolocation.watchPosition(p=>pushGps(p,activeGpsOrderIds),
+       e=>{ $('gpsStatus').textContent='🔴 GPS error'; toast('GPS permission দিন: '+e.message); },
+       {enableHighAccuracy:true,maximumAge:5000,timeout:15000});},
+   e=>{ $('gpsStatus').textContent='🔴 GPS permission দরকার'; toast('GPS permission দিন: '+e.message); },
+   {enableHighAccuracy:true,maximumAge:0,timeout:15000}
+ );
+ toast('Live GPS tracking চালু হচ্ছে… 📍');
+}
+async function updateLocation(orderId){
+ activeGpsOrderIds=[orderId];
+ if(!navigator.geolocation)return toast('এই ফোনে GPS নেই');
+ if(gpsWatch)navigator.geolocation.clearWatch(gpsWatch);
+ navigator.geolocation.getCurrentPosition(
+   pos=>{pushGps(pos,activeGpsOrderIds);gpsWatch=navigator.geolocation.watchPosition(p=>pushGps(p,activeGpsOrderIds),e=>toast('GPS error: '+e.message),{enableHighAccuracy:true,maximumAge:5000,timeout:15000});},
+   e=>toast('GPS permission দিন: '+e.message),
+   {enableHighAccuracy:true,maximumAge:0,timeout:15000}
+ );
+ toast('এই order-এর Live GPS চালু হয়েছে 📍');
+}
+window.addEventListener('beforeinstallprompt',e=>{e.preventDefault();deferredInstall=e;$('installBtn').style.display='inline-block';});
+async function installDelivery(){if(!deferredInstall)return;deferredInstall.prompt();await deferredInstall.userChoice;deferredInstall=null;$('installBtn').style.display='none';}
+if('serviceWorker' in navigator) window.addEventListener('load',()=>navigator.serviceWorker.register('delivery-sw.js').catch(console.warn));
+function setupRealtime(){try{sb.channel('delivery-live').on('postgres_changes',{event:'*',schema:'public',table:'orders'},()=>load()).subscribe();}catch(e){console.warn(e)}}
+boot().then(setupRealtime);
+</script><script src="/tff-v7-smart-experience.js"></script><script src="/tff-v6-runtime.js"></script><script src="/tff-v6-final.js"></script>
+<script id="v624-final-dashboard-clean">
+(function(){
+  if(!/admin\.html|delivery\.html/i.test(location.pathname)) return;
+  function clean(){
+    const selectors='button,a,div,span,section,aside';
+    document.querySelectorAll(selectors).forEach(el=>{
+      const t=(el.textContent||'').replace(/\s+/g,' ').trim();
+      if(!t || t.length>120) return;
+      const exactUnwanted =
+        /^(?:Online|🟢 Online|Update Now|Install|\+ Install|📱 Install|Share|Copy Link|Refresh)$/i.test(t) ||
+        /New App Update available/i.test(t) ||
+        /Current\s+5\.1\.0.*Latest\s+6\.2-final-launch/i.test(t);
+      const launchLink = /^(?:Customer App|🛵 Delivery|Delivery|Admin)$/i.test(t);
+      const threeLine = /^(?:☰|≡|⋮|⋯)$/.test(t) || (t.length<=8 && /menu|hamburger|floating|bubble/i.test(String(el.className||'')));
+      if(exactUnwanted || threeLine){
+        el.style.setProperty('display','none','important');
+        el.style.setProperty('pointer-events','none','important');
+      }
+      // Remove only the dashboard's redundant launch buttons, preserving underlying routes/functions elsewhere.
+      if(launchLink && el.closest('header')){
+        el.style.setProperty('display','none','important');
+        el.style.setProperty('pointer-events','none','important');
+      }
+    });
+  }
+  if(document.readyState==='loading') document.addEventListener('DOMContentLoaded',clean);
+  else clean();
+  new MutationObserver(clean).observe(document.documentElement,{subtree:true,childList:true});
+  setTimeout(clean,500); setTimeout(clean,1500); setTimeout(clean,3000);
+})();
+</script>
+<script src="/tff-final-auto-machine.js"></script><script src="/tff-v7-step4-advanced.js"></script></body></html>

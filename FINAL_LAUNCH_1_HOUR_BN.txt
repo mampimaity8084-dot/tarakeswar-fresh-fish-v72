@@ -1,0 +1,54 @@
+TARAKESWAR FRESH FISH — FINAL LAUNCH CHECKLIST
+
+এই ZIP-এ payment verification + payment_sessions + Auto Banner + WhatsApp share flow একসাথে প্রস্তুত করা হয়েছে।
+
+STEP 1 — SUPABASE SQL (10 মিনিট)
+1. Supabase Dashboard → SQL Editor → New Query
+2. প্রথমে আগের V2/V2.3/V3 SQL যদি run করা না থাকে, project-এর existing SQL files অনুযায়ী run করুন।
+3. তারপর এই ZIP-এর AUTO_BANNER_FINAL.sql পুরোটা paste করে Run করুন।
+
+STEP 2 — SUPABASE SECRET (3 মিনিট)
+Cloudflare Environment Variables-এ server-side secret দিন:
+SUPABASE_URL = YOUR_SUPABASE_PROJECT_URL
+SUPABASE_SERVICE_ROLE_KEY = আপনার Supabase service_role key
+RAZORPAY_KEY_ID = আপনার Razorpay test/live key id
+RAZORPAY_KEY_SECRET = আপনার Razorpay test/live key secret
+
+IMPORTANT: service_role/secret key browser code-এ দেবেন না। Supabase-ও backend secret key only backend/Edge Function-এ রাখার নির্দেশ দেয়।
+
+STEP 3 — NETLIFY DEPLOY (5 মিনিট)
+1. SAME Cloudflare site/project-এ এই পুরো ZIP deploy করুন।
+2. Deploy published হয়েছে নিশ্চিত করুন।
+3. Environment variable change করলে নতুন deploy করুন।
+
+STEP 4 — AUTO BANNER TEST (5 মিনিট)
+Admin → Login → 🤖 Auto Banner → Run Now
+Expected: “Auto Banner তৈরি হয়েছে।”
+তারপর Refresh করলে banner দেখা যাবে।
+
+STEP 5 — WHATSAPP GROUP SHARE (2 মিনিট)
+Admin → Auto Banner → 📤 WhatsApp Share
+Android share sheet খুলবে → WhatsApp → আপনার Group select → Send.
+এই build arbitrary WhatsApp Group-এ hidden/server-side auto-post করার চেষ্টা করে না; official-safe share flow ব্যবহার করে।
+
+STEP 6 — PAYMENT TEST (15 মিনিট)
+1. Customer App খুলুন।
+2. একটি product cart-এ দিন।
+3. checkout → Razorpay Test Payment করুন।
+4. সফল হলে confirmation page-এ “Server Verified Payment” এবং Order ID দেখাবে।
+5. Supabase payment_sessions-এ নতুন row status=finalized এবং orders-এ Paid order দেখুন।
+
+STEP 7 — FINAL GO-LIVE (10 মিনিট)
+1. Razorpay live credentials বসান।
+2. Test/live key mismatch যেন না থাকে।
+3. Auto Banner Run Now একবার করুন।
+4. Customer App → checkout test করুন।
+5. Admin → Orders-এ order দেখুন।
+
+TROUBLESHOOTING
+- Auto Banner error → Cloudflare Function logs → auto-banner.
+- Payment error → Cloudflare Function logs → verify-checkout/verify-payment.
+- “Payment session not found” → create-checkout log-এ checkout_session_created আছে কিনা দেখুন; payment window খোলার আগেই session save না হলে নতুন build payment খুলবে না।
+- Supabase secret missing → Cloudflare Environment Variables check করুন।
+
+DO NOT SHARE: Razorpay secret, Supabase service_role/secret key, Meta access token.

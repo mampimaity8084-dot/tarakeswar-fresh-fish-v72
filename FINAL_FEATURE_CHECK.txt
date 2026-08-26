@@ -1,0 +1,11 @@
+Tarakeswar Fresh Fish — FINAL FEATURE CHECK
+- Delivery Partner Pro: login, today's dashboard, pending/out-for-delivery/delivered counts,
+  earnings, customer call, WhatsApp, Google Maps navigation, start delivery, live GPS,
+  delivery OTP, delivered workflow, 30-second auto refresh, admin/store shortcuts.
+- Combo & Offer Zone: horizontal scroll, View All, touch-to-Combo category.
+- Home offer slider: every auto-scrolling slide is clickable and opens Combo category.
+- Auto banner: clickable to Combo section.
+- Categories: All, Fish, Seafood, Meat, Eggs, Milk, Bakery, Combo.
+- 25 sample combo products included in products.json; all are category=Combo and editable.
+- App Download QR: dynamically uses current live site root, not an old hard-coded Cloudflare URL.
+- Existing Razorpay/Supabase/automation files retained.

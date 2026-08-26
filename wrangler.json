@@ -1,0 +1,14 @@
+{
+  "$schema": "./node_modules/wrangler/config-schema.json",
+  "name": "tarakeswar-fresh-fish-v72",
+  "main": "./_worker.js",
+  "compatibility_date": "2026-08-26",
+  "compatibility_flags": ["nodejs_compat", "nodejs_compat_populate_process_env"],
+  "assets": {
+    "directory": ".",
+    "not_found_handling": "404-page"
+  },
+  "triggers": {
+    "crons": ["0 * * * *", "45 18 * * *"]
+  }
+}

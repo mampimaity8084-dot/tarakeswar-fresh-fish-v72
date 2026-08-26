@@ -1,0 +1,35 @@
+{
+  "default": "customer",
+  "themes": {
+    "customer": {
+      "label": "Customer App",
+      "accent": "#0c9b50",
+      "navy": "#071b34",
+      "background": "#f4f7fb"
+    },
+    "delivery": {
+      "label": "Delivery Partner App",
+      "accent": "#0b7e49",
+      "navy": "#071b34",
+      "background": "#eef7f1"
+    },
+    "admin": {
+      "label": "Admin App",
+      "accent": "#7c3aed",
+      "navy": "#25104d",
+      "background": "#f7f4ff"
+    },
+    "durga-puja": {
+      "label": "Durga Puja",
+      "accent": "#b91c1c",
+      "navy": "#3b0a0a",
+      "background": "#fff7ed"
+    },
+    "kali-puja": {
+      "label": "Kali Puja",
+      "accent": "#7e22ce",
+      "navy": "#190b2e",
+      "background": "#faf5ff"
+    }
+  }
+}

@@ -1,0 +1,8 @@
+{
+  "version": "7.1-final-auto-machine",
+  "channel": "stable",
+  "build": "FINAL-AUTO-MACHINE",
+  "notes": "Customer/Admin/Delivery auto-sync, silent update, floating Bengali AI, top Partner Hub, customer profile shortcut and production hardening",
+  "cacheBust": "20260826-FINAL-AUTO-MACHINE",
+  "release": "2026-08-26"
+}

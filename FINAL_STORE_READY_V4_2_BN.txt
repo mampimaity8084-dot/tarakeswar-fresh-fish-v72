@@ -1,0 +1,197 @@
+TARAKESWAR FRESH FISH — FINAL STORE READY V4.2
+================================================
+
+এই build-এ final launch-এর আগে যেসব gap ধরা পড়েছিল সেগুলো fix করা হয়েছে:
+
+1. Minimum order ₹499
+   - Customer app-এ cart ₹499-এর নিচে হলে স্পষ্টভাবে দেখাবে কত টাকা/কত product আরও add করতে হবে।
+   - Frontend ছাড়াও Cloudflare server checkout-এ ₹499 enforce করা হয়েছে।
+   - তাই customer bypass করে ₹499-এর নিচে order confirm করতে পারবে না।
+
+2. Fresh Wallet
+   - Admin Customer Dashboard থেকে customer wallet-এ recharge করা যাবে।
+   - Recharge-এর প্রতিটি entry wallet_ledger-এ থাকবে।
+   - Customer My Fresh Hub-এ balance দেখতে পারবে।
+   - Wallet payment-এ 2% discount থাকবে।
+   - Wallet order confirm হলে server-side wallet balance থেকে payable amount automatic minus হবে।
+   - Wallet spending-এর আগে একই device থেকে অন্তত একটি verified paid order থাকা বাধ্যতামূলক।
+
+3. Customer profile photo
+   - Customer My Fresh Hub থেকে নিজের profile photo upload করতে পারবে।
+   - Admin Customer Dashboard থেকেও customer photo upload করা যাবে।
+   - Photo Supabase customer-avatars bucket-এ যাবে; browser database-এ base64 রাখা হবে না।
+
+4. Customer Dashboard
+   - Admin title: Tarakeswar Fresh Fish — Customer Dashboard
+   - Customer name + mobile + area + photo + points + wallet + referral + order count দেখা যাবে।
+   - এখান থেকেই Wallet recharge করা যাবে।
+
+5. Combo auto-scroll
+   - Combo & Offer Zone-এর manual View All থাকবে।
+   - Combo cards automatic horizontal scroll করবে।
+   - Existing top offer slider-এর auto slide থাকবে।
+
+6. Delivery Partner
+   - Login/logout timestamp এখন save হবে।
+   - Delivery dashboard-এ partner name, base pay, surge এবং calculated bonus দেখা যাবে।
+   - Delivered order হলে assigned partner-এর earnings/bonus একবার automatic যোগ হবে।
+   - Final order status log-এ Delivery Partner-এর নাম লেখা হবে।
+   - Existing QR magic login retained.
+
+7. App Install
+   - Customer/Admin/Delivery manifest-এ proper 192x192 ও 512x512 PNG icons দেওয়া হয়েছে।
+   - Service-worker cache version bump করা হয়েছে যাতে পুরনো cached build আটকে না থাকে।
+   - Customer Install button এখন একটিই install handler ব্যবহার করে।
+   - IMPORTANT: Chrome নিজে beforeinstallprompt না দিলে কোনো website JavaScript দিয়ে Android-এর system install dialog জোর করে খুলতে পারে না। তখন Chrome ⋮ → Add to Home screen / Install app ব্যবহার করতে হবে।
+
+8. WhatsApp Auto Banner
+   - Auto Banner generation ঠিক আছে এবং scheduled function প্রতিদিন banner generate করতে পারে।
+   - Android Share button দিয়ে WhatsApp-এ পাঠানো যাবে।
+   - Arbitrary WhatsApp Group-এ hidden server-side automatic posting এই build-এ করা হয়নি; এটি WhatsApp-এর supported group API limitation-এর কারণে।
+
+================================================
+FINAL SETUP — মোবাইল থেকে
+================================================
+
+STEP 1 — Supabase
+-----------------
+1. Supabase Dashboard খুলুন।
+2. SQL Editor → New Query.
+3. এই ZIP-এর FINAL_STORE_FIX_V4_2.sql পুরোটা paste করুন।
+4. Run চাপুন।
+5. নিচে error না থাকলে SQL setup complete.
+
+IMPORTANT:
+- আগের MASTER_FINAL_SETUP / V3 / FINAL_PRODUCTION_SETUP যদি ইতিমধ্যে চালানো থাকে, আবার সব SQL চালানোর দরকার নেই।
+- এই V4.2 fix SQL-টাই existing database-এর ওপর চালাবেন।
+
+STEP 2 — Cloudflare Environment Variables
+--------------------------------------
+Cloudflare → Site configuration → Environment variables.
+নিশ্চিত করুন এগুলো আছে:
+
+SUPABASE_URL
+SUPABASE_SERVICE_ROLE_KEY
+RAZORPAY_KEY_ID
+RAZORPAY_KEY_SECRET
+ADMIN_EMAILS
+
+ADMIN_EMAILS-এ আপনার Admin Supabase login email দিন।
+
+Optional WhatsApp:
+WHATSAPP_PHONE_NUMBER_ID
+WHATSAPP_ACCESS_TOKEN
+WHATSAPP_GRAPH_VERSION
+WHATSAPP_TEMPLATE_NAME
+WHATSAPP_TEMPLATE_LANG
+FEEDBACK_FORM_URL
+
+Optional Push:
+VAPID_PUBLIC_KEY
+VAPID_PRIVATE_KEY
+VAPID_SUBJECT
+
+কোনো secret key HTML/JS file-এ বসাবেন না।
+
+STEP 3 — Cloudflare Deploy
+----------------------
+1. এই ZIP-এর পুরো contents deploy করুন।
+2. Publish directory project root / `.` থাকবে।
+3. Functions directory `netlify/functions` থাকবে।
+4. Deploy complete হওয়া পর্যন্ত অপেক্ষা করুন।
+5. Environment variable change করলে নতুন deploy দিন।
+
+STEP 4 — Customer App Test
+--------------------------
+1. Chrome Incognito/Private tab খুলুন অথবা site data clear করে live site খুলুন।
+2. Customer App খুলুন।
+3. Combo section দেখুন — cards auto-scroll করছে কি না।
+4. একটি product add করুন।
+5. ₹499-এর নিচে Checkout খুলে দেখুন — “আরও ₹... product Add করুন” দেখাবে।
+6. ₹499+ হলে checkout allow হবে।
+7. COD/Online test payment করুন।
+8. My Fresh Hub খুলে customer account দেখুন।
+
+STEP 5 — Wallet Test
+--------------------
+1. Admin → Customer Dashboard.
+2. Test customer-এর পাশে Recharge amount দিন, যেমন 500.
+3. Add Wallet চাপুন।
+4. Customer My Fresh Hub-এ balance দেখুন।
+5. ₹499+ cart করুন।
+6. Payment Method → Fresh Wallet.
+7. 2% discount দেখাবে।
+8. Confirm করলে wallet balance automatic minus হবে।
+
+STEP 6 — Customer Photo Test
+----------------------------
+1. Customer → My Fresh Hub.
+2. Profile Photo → Photo Upload.
+3. Photo select করুন।
+4. 2MB-এর বেশি হলে reject হবে।
+5. সফল হলে photo profile-এ দেখা যাবে।
+6. Admin → Customer Dashboard থেকেও একই customer photo update করে test করুন।
+
+STEP 7 — Delivery Partner Test
+------------------------------
+1. Admin → Delivery Partners.
+2. Partner Active আছে নিশ্চিত করুন।
+3. Generate QR Login করুন।
+4. Delivery phone দিয়ে QR scan করুন।
+5. Login হওয়ার পরে name + Bonus + Login time দেখুন।
+6. Order assign করুন।
+7. Delivery app-এ order queue দেখা উচিত।
+8. GPS permission Allow করুন।
+9. Delivery OTP দিয়ে Delivered করুন।
+10. Admin → Orders-এ Delivery Partner name দেখা উচিত।
+11. Partner earnings-এ bonus একবার যোগ হওয়া উচিত।
+12. Logout করলে logout timestamp save হবে।
+
+STEP 8 — App Install Test
+-------------------------
+Customer site Chrome-এ খুলে Install button দেখুন।
+
+যদি button direct install prompt দেয় → Install করুন।
+যদি না দেয় → Chrome ⋮ → Add to Home screen / Install app.
+
+Admin ও Delivery-র জন্যও একই নিয়ম।
+
+IMPORTANT: Android/Chrome-এর install eligibility browser-controlled। Website code দিয়ে system dialog force করা যায় না।
+
+STEP 9 — Auto Banner
+--------------------
+Admin → Auto Banner → Run Now.
+Expected:
+“Auto Banner তৈরি হয়েছে।”
+
+তারপর Refresh করুন।
+WhatsApp Share চাপলে Android share sheet খুলবে।
+
+STEP 10 — Final Payment Test
+----------------------------
+Live করার আগে Razorpay Test mode-এ অন্তত একটি সম্পূর্ণ order করুন।
+Expected:
+- Payment verified
+- Order created
+- Admin order list-এ order
+- Delivery assignment
+- Delivery OTP
+- Delivered status
+- Rewards/points trigger
+- Delivery partner earnings
+
+তারপরই Live Razorpay keys ব্যবহার করুন।
+
+================================================
+FINAL VERDICT
+================================================
+
+এই V4.2 package-এ আপনার বলা প্রধান missing features code/database level-এ যুক্ত করা হয়েছে।
+
+তবে LIVE যাওয়ার আগে ৩টি জিনিস আপনার Cloudflare/Supabase account-এ অবশ্যই ঠিক থাকতে হবে:
+
+1. Supabase SQL setup complete
+2. Cloudflare environment variables complete
+3. One real/test end-to-end order successful
+
+এরপরই customer-দের জন্য live link share করবেন।

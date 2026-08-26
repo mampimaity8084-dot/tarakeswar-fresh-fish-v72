@@ -1,0 +1,48 @@
+
+/* V6.2.4 FINAL DASHBOARD UI CLEAN
+   Remove only unwanted floating/online/update UI from Admin & Delivery.
+   Existing application functionality is preserved.
+*/
+.tff-unwanted-floating,
+.floating-menu,
+.floating-bubble,
+.floating-3line,
+.hamburger-bubble,
+.menu-bubble,
+.online-pill,
+.online-status-pill,
+.online-indicator-pill,
+.status-pill.online,
+#online-pill,
+#online-indicator,
+#onlineStatus,
+#online-status,
+#update-banner,
+.update-banner,
+.app-update-banner,
+.update-available,
+.install-update,
+#install-update,
+.pwa-update-banner,
+.pwa-install-banner {
+  display: none !important;
+  visibility: hidden !important;
+  pointer-events: none !important;
+}
+
+/* Hide the two visible app-launch/update fonts/buttons in dashboards,
+   while leaving their underlying functions intact elsewhere. */
+.admin-dashboard .app-update,
+.admin-dashboard .update-now,
+.admin-dashboard .install-now,
+.delivery-dashboard .app-update,
+.delivery-dashboard .update-now,
+.delivery-dashboard .install-now {
+  display: none !important;
+}
+
+/* Do not let hidden overlays intercept touches. */
+[aria-hidden="true"],
+.hidden-overlay {
+  pointer-events: none !important;
+}

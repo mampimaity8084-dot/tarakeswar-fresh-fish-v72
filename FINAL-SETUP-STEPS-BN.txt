@@ -1,0 +1,52 @@
+TARAKESWAR FRESH FISH — FINAL AUTO MACHINE 7.2
+QUICK LAUNCH STEPS
+
+A) SUPABASE
+1. Production project backup নিন.
+2. Existing master SQL documented order-এ run করুন.
+3. V7_FINAL_AUTO_MACHINE.sql একবার run করুন.
+4. V7_AI_FESTIVAL_BRANDING.sql run করুন যদি branding table আগে না থাকে.
+5. Realtime/permissions/RLS verify করুন.
+
+B) NETLIFY ENV
+Required:
+SUPABASE_URL
+SUPABASE_SERVICE_ROLE_KEY
+RAZORPAY_KEY_ID
+RAZORPAY_KEY_SECRET
+ADMIN_EMAILS
+
+AI (one route):
+OPENAI_API_KEY + optional OPENAI_MODEL
+or AI_API_URL + AI_API_KEY
+
+Push:
+VAPID_PUBLIC_KEY
+VAPID_PRIVATE_KEY
+VAPID_SUBJECT
+
+WhatsApp:
+WHATSAPP_ACCESS_TOKEN
+WHATSAPP_PHONE_NUMBER_ID
+WHATSAPP_GRAPH_VERSION
+WHATSAPP_TEMPLATE_LANG (optional)
+WHATSAPP_GROUP_ID (if supported/configured)
+
+C) DEPLOY
+Publish directory: .
+Functions: netlify/functions
+
+D) REAL TEST
+Customer: login -> product -> cart -> offer -> payment -> order.
+Admin: login -> product -> category -> offer -> banner -> assignment.
+Delivery: login -> queue -> GPS -> navigation -> OTP -> delivered.
+
+E) DO NOT SHIP UNTIL
+- Payment verify passes.
+- Product never stays in infinite loading.
+- Customer cannot access Admin/Delivery role data.
+- Push works if enabled.
+- WhatsApp works if enabled.
+- AI works if enabled.
+- GPS works on a real phone.
+- Refresh/reopen/offline paths are tested.
