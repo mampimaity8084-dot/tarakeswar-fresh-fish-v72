@@ -1,0 +1,14 @@
+/index.html
+  Cache-Control: no-cache, no-store, must-revalidate
+/admin.html
+  Cache-Control: no-cache, no-store, must-revalidate
+/delivery.html
+  Cache-Control: no-cache, no-store, must-revalidate
+/app-version.json
+  Cache-Control: no-cache, no-store, must-revalidate
+/sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+/admin-sw.js
+  Cache-Control: no-cache, no-store, must-revalidate
+/delivery-sw.js
+  Cache-Control: no-cache, no-store, must-revalidate

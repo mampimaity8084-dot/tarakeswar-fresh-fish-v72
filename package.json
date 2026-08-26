@@ -1,14 +1,14 @@
 {
   "private": true,
-  "version": "7.2.0-cloudflare-ready",
+  "version": "6.0.0-final-launch",
   "scripts": {
     "test:v6:static": "node tests/v6-static-check.mjs",
     "test:v7:static": "node tests/v6-static-check.mjs",
     "check:v7:structure": "node tools/v7-structure-check.mjs",
-    "check:cloudflare": "node tools/cloudflare-ready-check.mjs",
-    "check:all": "npm run test:v6:static && npm run check:v7:structure && npm run check:cloudflare"
+    "deploy:cloudflare": "npx wrangler deploy",
+    "check:cloudflare": "npx wrangler deploy --dry-run"
   },
   "dependencies": {
     "web-push": "^3.6.7"
-  },"name": "tarakeswar-fresh-fish-v72"
+  }
 }
