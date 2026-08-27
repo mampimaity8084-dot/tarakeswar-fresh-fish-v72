@@ -106,7 +106,7 @@ async function resizeImage(file,max=1280,quality=.82){
   });
 }
 async function visualSearch(dataUrl){
-  const r=await fetch('/api/ai-visual-search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({image_data_url:dataUrl,products:(window.tffProducts||window.products||[]).slice(0,120).map(p=>({id:p.id,name:p.name,category:p.category,price:p.price,unit:p.unit,available:p.available!==false,description:p.description||''}))})});
+  const r=await fetch('/.netlify/functions/ai-visual-search',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({image_data_url:dataUrl,products:(window.tffProducts||window.products||[]).slice(0,120).map(p=>({id:p.id,name:p.name,category:p.category,price:p.price,unit:p.unit,available:p.available!==false,description:p.description||''}))})});
   const d=await r.json().catch(()=>({}));if(!r.ok)throw Error(d.error||'Visual search unavailable');return d;
 }
 function speak(text){
@@ -151,7 +151,7 @@ function initCustomer(b){
   async function ask(q){
     add(esc(q),false);const wait=add('🤖 Thinking…');wait.classList.add('tff-v7-thinking');
     try{
-      const r=await fetch('/api/ai-assistant',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q,context:{products:(window.tffProducts||window.products||[]).slice(0,120),cart:window.tffCart||window.cart||[],profile:JSON.parse(localStorage.getItem('tff_profile')||'{}')}}});
+      const r=await fetch('/.netlify/functions/ai-assistant',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({message:q,context:{products:(window.tffProducts||window.products||[]).slice(0,120),cart:window.tffCart||window.cart||[],profile:JSON.parse(localStorage.getItem('tff_profile')||'{}')}}});
       const d=await r.json();wait.remove();
       const text=d.text||d.error||'এই মুহূর্তে নিশ্চিত তথ্য পাওয়া গেল না।';
       add(esc(text).replace(/\n/g,'<br>'));speak(text);

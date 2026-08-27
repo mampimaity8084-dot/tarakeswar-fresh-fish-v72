@@ -49,7 +49,7 @@ async function boot(){const {data:{session}}=await sb.auth.getSession();currentS
 async function login(){const {data,error}=await sb.auth.signInWithPassword({email:$('email').value.trim(),password:$('password').value});if(error){$('err').textContent=error.message;return}await sb.rpc('delivery_session_v4',{p_login:true});currentSession=data.session;load()}
 async function logout(){if(gpsWatch)navigator.geolocation.clearWatch(gpsWatch);try{await sb.rpc('delivery_session_v4',{p_login:false})}catch(e){}await sb.auth.signOut();location.reload()}
 async function loadDeliveryServiceInfo(){try{const {data,error}=await sb.from('delivery_service_settings').select('service_name,subtitle,benefits,delivery_note,free_delivery_min,active').eq('id',1).maybeSingle();if(error||!data)return;if($('serviceName'))$('serviceName').textContent='🚚 '+(data.service_name||'Delivery Service');if($('serviceSubtitle'))$('serviceSubtitle').textContent=data.subtitle||'';if($('serviceBenefits'))$('serviceBenefits').innerHTML=(Array.isArray(data.benefits)?data.benefits:[]).map(x=>`<div style="padding:4px 0">✓ ${esc(x)}</div>`).join('');if($('serviceNote'))$('serviceNote').textContent=(data.delivery_note||'')+(data.free_delivery_min?` • Free delivery above ₹${Number(data.free_delivery_min).toFixed(0)}`:'')}catch(e){console.warn('service info',e)}}
-async function deliveryApi(payload){const {data:{session}}=await sb.auth.getSession();if(!session)throw new Error('Delivery login required');const r=await fetch((window.TFF_API_BASE||'')+'/api/delivery-action',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+session.access_token},body:JSON.stringify(payload)});const d=await r.json().catch(()=>({}));if(!r.ok||!d.ok)throw new Error(d.error||'Delivery request failed');return d}
+async function deliveryApi(payload){const {data:{session}}=await sb.auth.getSession();if(!session)throw new Error('Delivery login required');const r=await fetch((window.TFF_API_BASE||'')+'/.netlify/functions/delivery-action',{method:'POST',headers:{'Content-Type':'application/json','Authorization':'Bearer '+session.access_token},body:JSON.stringify(payload)});const d=await r.json().catch(()=>({}));if(!r.ok||!d.ok)throw new Error(d.error||'Delivery request failed');return d}
 async function load(){
  clearTimeout(refreshTimer);
  if(!currentSession?.user?.id)return;
@@ -165,4 +165,7 @@ boot().then(setupRealtime);
   setTimeout(clean,500); setTimeout(clean,1500); setTimeout(clean,3000);
 })();
 </script>
-<script src="/tff-final-auto-machine.js"></script><script src="/tff-v7-step4-advanced.js"></script></body></html>
+</body></html>
+<script src="/tff-v7-step4-advanced.js"></script>
+
+<script src="/tff-v7-step5-automation.js"></script>
